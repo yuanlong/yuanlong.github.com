@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>iMoive</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css">
+		<link rel="stylesheet" href="./css/iMoive.css">
+	</head>
+
+	<body class="mui-fullscreen">
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--菜单部分-->
+			<aside id="offCanvasSide" class="mui-off-canvas-right">
+				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="title">iMoive</div>
+						<div class="content">
+							<br>
+							免责声明：本页面仅限学习使用。本站所有资源均收集自互联网，没有提供影片资源存储，也未参与录制、上传。
+							<br>
+							<br>
+						</div>
+						<div class="title" style="margin-bottom: 25px;">分类导航</div>
+						<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									动作片
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									喜剧片
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									爱情片
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									科幻片
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									恐怖片
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								剧情片
+							</a>
+							</li>
+<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								战争片
+							</a>
+							</li><li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								国产剧
+							</a>
+							</li><li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								香港剧
+							</a>
+							</li><li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								韩国剧
+							</a>
+							</li><li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								欧美剧
+							</a>
+							</li><li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								台湾剧
+							</a>
+							</li><li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								日本剧
+							</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								海外剧
+							</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								纪录片
+							</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+								伦理片
+							</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</aside>
+			<div class="mui-inner-wrap">
+			<!--页面主结构开始-->
+			<div id="app" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar">
+				</div>
+				<div class="mui-pages">
+				</div>
+			</div>
+			</div>
+		<!--页面主结构结束-->
+		<div id="setting" class="mui-page">
+				<div class="mui-navbar-inner mui-bar mui-bar-nav">
+					<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right"></a>
+					<h1 class="mui-title">iMoive</h1>
+				</div>
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-content-padded">
+						<div class="mui-input-row mui-search mui-active">
+							<input type="search" class="mui-input-clear mui-input-speech" placeholder="" data-input-clear="1" data-input-search="1"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+						</div>
+							<div class="moivecontent" >
+							
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+
+
+<div id="about" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">关于MUI</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-plus-visible mui-stream-hidden">
+								<a id="rate" class="mui-navigate-right">评分鼓励</a>
+							</li>
+							<li class="mui-table-view-cell mui-plus-visible">
+								<a id="welcome" class="mui-navigate-right">欢迎页</a>
+							</li>
+							<li class="mui-table-view-cell mui-plus-visible">
+								<a id="share" class="mui-navigate-right">分享推荐</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="tel" class="mui-navigate-right">客服电话</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="feedback-btn" href="#setting" class="mui-navigate-right">问题反馈</a>
+							</li>
+							<li id="check_update" class="mui-table-view-cell mui-plus-visible">
+								<a id="update" class="mui-navigate-right">检查更新</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+<script id="moiveTemplate" type="text/html">
+						<div class="mui-card" data-id="{{id}}">
+								<div class="mui-card-content">
+									<div class="mui-card-content-inner">
+										<img src="{{img}}"/>
+									</div>
+								</div>
+								<div class="mui-card-footer">{{name}}</div>
+						</div>
+</script>
+		<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.min.js"></script>
+		<script src="./js/mui.view.js "></script>
+		<script src="./js/iMoive.js "></script>
+	</body>
+
+</html>
