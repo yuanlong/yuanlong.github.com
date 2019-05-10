@@ -173,3 +173,12 @@ input[type=search] {
 .moivecontent {
     text-align: center;
 }
+.moivecontent ul {
+    list-style: none;
+    padding-inline-start: 0px;
+}
+.moivecontent li {
+    display: inline-block;
+    vertical-align: top;
+    width: 33.25%;
+}
