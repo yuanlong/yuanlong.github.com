@@ -128,8 +128,9 @@
 							<input type="search" class="mui-input-clear mui-input-speech" placeholder="" data-input-clear="1" data-input-search="1"><span class="mui-icon mui-icon-clear mui-hidden"></span>
 						</div>
 							<div class="moivecontent" >
-							
-
+								<ul>
+								
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -177,7 +178,7 @@
 		</div>
 		
 <script id="moiveTemplate" type="text/html">
-						<div class="mui-card" data-id="{{id}}">
+		<li>				<div class="mui-card" data-id="{{id}}">
 								<div class="mui-card-content">
 									<div class="mui-card-content-inner">
 										<img src="{{img}}"/>
@@ -185,6 +186,7 @@
 								</div>
 								<div class="mui-card-footer">{{name}}</div>
 						</div>
+		</li>
 </script>
 		<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 		<script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.min.js"></script>
