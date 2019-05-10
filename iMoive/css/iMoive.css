@@ -175,6 +175,7 @@ input[type=search] {
 }
 .moivecontent ul {
     list-style: none;
+    -webkit-padding-start: 0px;
     padding-inline-start: 0px;
 }
 .moivecontent li {
