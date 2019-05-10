@@ -26,7 +26,7 @@ String.prototype.replaceAll = stringReplaceAll;
 			mui('#offCanvasSideScroll').scroll();
 			mui('#offCanvasContentScroll').scroll();
 var MoiveTMPL=jQuery("#moiveTemplate").html();
-var content=jQuery(".moivecontent")
+var content=jQuery(".moivecontent ul")
 
 			jQuery.getJSON("https://cors-anywhere.herokuapp.com/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=1&g=plus&play=kuyun&cid=5",function(data){
 	for(var i=0;i<data.data.length;i++){
