@@ -28,8 +28,9 @@ String.prototype.replaceAll = stringReplaceAll;
 var MoiveTMPL=jQuery("#moiveTemplate").html();
 var content=jQuery(".moivecontent ul")
 
-			jQuery.getJSON("https://cors-anywhere.herokuapp.com/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=1&g=plus&play=kuyun&cid=5",function(data){
-	for(var i=0;i<data.data.length;i++){
+		//jQuery.getJSON("https://cors-anywhere.herokuapp.com/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=1&g=plus&play=kuyun&cid=5",function(data){
+jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=1&g=plus&play=kuyun&cid=5",function(data){	
+for(var i=0;i<data.data.length;i++){
 		var moive=data.data[i];
 var html=MoiveTMPL.replaceAll("{{id}}",moive.vod_id).replaceAll("{{img}}",moive.vod_pic).replaceAll("{{name}}",moive.vod_name);
 content.append(html);
