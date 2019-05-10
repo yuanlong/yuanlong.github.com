@@ -180,5 +180,6 @@ input[type=search] {
 .moivecontent li {
     display: inline-block;
     vertical-align: top;
-    width: 33.25%;
+    width: 32.25%;
+    text-align: center;
 }
