@@ -1,4 +1,3 @@
-window.onerror=function(){return true;}
 String.prototype.replaceAll = stringReplaceAll;
 function stringReplaceAll(AFindText, ARepText) {
     var raRegExp = new RegExp(AFindText.replace(/([\(\)\[\]\{\}\^\$\+\-\*\?\.\"\'\|\/\\])/g, "\\$1"), "ig");
