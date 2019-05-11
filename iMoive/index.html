@@ -6,7 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+		<meta name="robots" content="nofollow">
+		<meta name="robots" content="noarchive">
 		<link rel="stylesheet" href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css">
 		<link rel="stylesheet" href="./css/iMoive.css">
 	</head>
@@ -26,77 +27,77 @@
 							<br>
 						</div>
 						<div class="title" style="margin-bottom: 25px;">分类导航</div>
-						<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
-							<li class="mui-table-view-cell">
+						<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" id="menu">
+							<li class="mui-table-view-cell" data-cid="5">
 								<a class="mui-navigate-right">
 									动作片
 								</a>
 							</li>
-							<li class="mui-table-view-cell">
+							<li class="mui-table-view-cell" data-cid="6">
 								<a class="mui-navigate-right">
 									喜剧片
 								</a>
 							</li>
-							<li class="mui-table-view-cell">
+							<li class="mui-table-view-cell" data-cid="7">
 								<a class="mui-navigate-right">
 									爱情片
 								</a>
 							</li>
-							<li class="mui-table-view-cell">
+							<li class="mui-table-view-cell" data-cid="8">
 								<a class="mui-navigate-right">
 									科幻片
 								</a>
 							</li>
-							<li class="mui-table-view-cell">
+							<li class="mui-table-view-cell" data-cid="9">
 								<a class="mui-navigate-right">
 									恐怖片
 								</a>
 							</li>
-							<li class="mui-table-view-cell">
+							<li class="mui-table-view-cell" data-cid="10">
 								<a class="mui-navigate-right">
 								剧情片
 							</a>
 							</li>
-<li class="mui-table-view-cell">
+							<li class="mui-table-view-cell" data-cid="11">
 								<a class="mui-navigate-right">
 								战争片
 							</a>
-							</li><li class="mui-table-view-cell">
+							</li><li class="mui-table-view-cell" data-cid="12">
 								<a class="mui-navigate-right">
 								国产剧
 							</a>
-							</li><li class="mui-table-view-cell">
+							</li><li class="mui-table-view-cell" data-cid="13">
 								<a class="mui-navigate-right">
 								香港剧
 							</a>
-							</li><li class="mui-table-view-cell">
+							</li><li class="mui-table-view-cell" data-cid="14">
 								<a class="mui-navigate-right">
 								韩国剧
 							</a>
-							</li><li class="mui-table-view-cell">
+							</li><li class="mui-table-view-cell" data-cid="15">
 								<a class="mui-navigate-right">
 								欧美剧
 							</a>
-							</li><li class="mui-table-view-cell">
+							</li><li class="mui-table-view-cell" data-cid="16">
 								<a class="mui-navigate-right">
 								台湾剧
 							</a>
-							</li><li class="mui-table-view-cell">
+							</li><li class="mui-table-view-cell" data-cid="17">
 								<a class="mui-navigate-right">
 								日本剧
 							</a>
 							</li>
-							<li class="mui-table-view-cell">
+							<li class="mui-table-view-cell" data-cid="18">
 								<a class="mui-navigate-right">
 								海外剧
 							</a>
 							</li>
-							<li class="mui-table-view-cell">
+							<li class="mui-table-view-cell" data-cid="19">
 								<a class="mui-navigate-right">
 								纪录片
 							</a>
 							</li>
-							<li class="mui-table-view-cell">
+							<li class="mui-table-view-cell" data-cid="21">
 								<a class="mui-navigate-right">
 								伦理片
 							</a>
@@ -125,12 +126,13 @@
 					<div class="mui-scroll">
 						<div class="mui-content-padded">
 						<div class="mui-input-row mui-search mui-active">
-							<input type="search" class="mui-input-clear mui-input-speech" placeholder="" data-input-clear="1" data-input-search="1"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+							<input type="search" class="mui-input-clear mui-input-speech" placeholder="输入你想看的电影" data-input-clear="1" data-input-search="1"><span class="mui-icon mui-icon-clear mui-hidden"></span>
 						</div>
 							<div class="moivecontent" >
 								<ul>
 								
 								</ul>
+								
 							</div>
 						</div>
 					</div>
@@ -141,55 +143,45 @@
 		</div>
 
 
-<div id="about" class="mui-page">
+<div id="play" class="mui-page">
 			<div class="mui-navbar-inner mui-bar mui-bar-nav">
 				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-					<span class="mui-icon mui-icon-left-nav"></span>设置
+					<span class="mui-icon mui-icon-left-nav"></span>首页
 				</button>
-				<h1 class="mui-center mui-title">关于MUI</h1>
+				<h1 class="mui-center mui-title" id="moivename"></h1>
 			</div>
 			<div class="mui-page-content">
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
-						<ul class="mui-table-view">
-							<li class="mui-table-view-cell mui-plus-visible mui-stream-hidden">
-								<a id="rate" class="mui-navigate-right">评分鼓励</a>
-							</li>
-							<li class="mui-table-view-cell mui-plus-visible">
-								<a id="welcome" class="mui-navigate-right">欢迎页</a>
-							</li>
-							<li class="mui-table-view-cell mui-plus-visible">
-								<a id="share" class="mui-navigate-right">分享推荐</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a id="tel" class="mui-navigate-right">客服电话</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a id="feedback-btn" href="#setting" class="mui-navigate-right">问题反馈</a>
-							</li>
-							<li id="check_update" class="mui-table-view-cell mui-plus-visible">
-								<a id="update" class="mui-navigate-right">检查更新</a>
-							</li>
-						</ul>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 		</div>
-		
+<div class="mui-mask"></div>
+<div class="loading">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+
 <script id="moiveTemplate" type="text/html">
 		<li>				<div class="mui-card" data-id="{{id}}">
 								<div class="mui-card-content">
 									<div class="mui-card-content-inner">
-										<img src="{{img}}"/>
+										<img class="lazy" data-original="{{img}}"/>
 									</div>
 								</div>
 								<div class="mui-card-footer">{{name}}</div>
 						</div>
 		</li>
 </script>
-		<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-		<script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+		<script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.js"></script>
 		<script src="./js/mui.view.js "></script>
 		<script src="./js/iMoive.js "></script>
 	</body>
