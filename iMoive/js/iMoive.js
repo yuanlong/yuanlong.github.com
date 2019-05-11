@@ -13,10 +13,14 @@ var oldBack = mui.back;
 mui.back = function() {
 	if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
 		viewApi.back();
+		jQuery(".player iframe").attr("src","about:blank");
 	} else { //执行webview后退
 		oldBack();
 	}
 };
+mui('.mui-scroll-wrapper').scroll({
+	deceleration: 0.0005 
+});
 //侧滑容器父节点
 var offCanvasWrapper = mui('#offCanvasWrapper');
 //主界面容器
@@ -34,47 +38,45 @@ var offCanvasSide = document.getElementById("offCanvasSide");
 mui('#offCanvasSideScroll').scroll();
 mui('#offCanvasContentScroll').scroll();
 var MoiveTMPL = jQuery("#moiveTemplate").html();
-var content = jQuery(".moivecontent ul")
-
+var InterTMPL = jQuery("#moiveIntrTemplate").html();
+var content = jQuery(".moivecontent ul");
+var MOIVES={};
 //jQuery.getJSON("https://cors-anywhere.herokuapp.com/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=1&g=plus&play=kuyun&cid=5",function(data){
 var cid = 5;
 var page = 1;
-loadMoives(cid, page,true)
+loadMoives(cid, page,true);
+
+function showMoives(data,clean){
+	if(clean){
+				content.empty();
+			}
+            for (var i = 0; i < data.data.length; i++) {
+                var moive = data.data[i];
+				MOIVES[moive.vod_id]=moive;
+                var html = MoiveTMPL.replaceAll("{{id}}", moive.vod_id).replaceAll("{{img}}", moive.vod_pic).replaceAll(
+                    "{{name}}", moive.vod_name);
+                content.append(html);
+            }
+			jQuery("img.lazy").lazyload({placeholder:"data:image/gif;base64,R0lGODlhCwAPAIAAAFVVVf///yH5BAEAAAEALAAAAAALAA8AAAILhI+py+0Po5y0wgIAOw==",effect: "fadeIn"});
+			hideLoading();
+}
+
 function loadMoives(cid, page,clean) {
 	showLoading();
     jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + page +
         "&g=plus&play=kuyun&cid=" + cid,
         function (data) {
-			if(clean){
-				content.empty();
-			}
-            for (var i = 0; i < data.data.length; i++) {
-                var moive = data.data[i];
-                var html = MoiveTMPL.replaceAll("{{id}}", moive.vod_id).replaceAll("{{img}}", moive.vod_pic).replaceAll(
-                    "{{name}}", moive.vod_name);
-                content.append(html);
-            }
-			jQuery("img.lazy").lazyload({placeholder:"data:image/gif;base64,R0lGODlhCwAPAIAAAFVVVf///yH5BAEAAAEALAAAAAALAA8AAAILhI+py+0Po5y0wgIAOw==",effect: "fadeIn"});
-			hideLoading();
+			showMoives(data,clean);
         })
 }
 function searchMoives(wd,page,clean){
+	if(wd=="")return;
 	showLoading();
     jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + page +
         "&g=plus&play=kuyun&wd=" + wd,
         function (data) {
-			if(clean){
-				content.empty();
-			}
-            for (var i = 0; i < data.data.length; i++) {
-                var moive = data.data[i];
-                var html = MoiveTMPL.replaceAll("{{id}}", moive.vod_id).replaceAll("{{img}}", moive.vod_pic).replaceAll(
-                    "{{name}}", moive.vod_name);
-                content.append(html);
-            }
-			jQuery("img.lazy").lazyload({placeholder:"data:image/gif;base64,R0lGODlhCwAPAIAAAFVVVf///yH5BAEAAAEALAAAAAALAA8AAAILhI+py+0Po5y0wgIAOw==",effect: "fadeIn"});
-			hideLoading();
-        })
+			showMoives(data,clean);
+        });
 }
 function showLoading(){
 	jQuery(".mui-mask,.loading").show();
@@ -83,8 +85,28 @@ function showLoading(){
 function hideLoading(){
 jQuery(".loading,.mui-mask").hide();
 }
+var moiveinter=jQuery("#moiveIntr");
 jQuery(".moivecontent").on("tap",".mui-card",function(){
 	var id=jQuery(this).data("id");
+	var moive=MOIVES[id];
+	if(moive==undefined){return;}
+	var html=InterTMPL.replaceAll("{{name}}", moive.vod_name).replaceAll("{{type}}", moive.list_name).replaceAll(
+                    "{{area}}", moive.vod_area).replaceAll(
+                    "{{director}}", moive.vod_director).replaceAll(
+                    "{{actor}}", moive.vod_actor).replaceAll(
+                    "{{content}}", moive.vod_content);
+	moiveinter.empty().html(html);
+	if(moive.vod_url!=undefined){
+	var vod_urls=moive.vod_url.split(/\$\$\$|\r\n/);
+	if(vod_urls.length>1){
+		var url=vod_urls[0].split("$")[1];
+		if(url.endsWith(".m3u8")){
+			url="https://www.ixxplayer.com/video.php?url="+url;
+		}
+	jQuery(".player iframe").attr("src",url||"about:blank");
+	}
+	}
+	jQuery("#moivename").text( moive.vod_name);
 	viewApi.go("#play")
 });
 jQuery("#menu").on("tap","li",function(){

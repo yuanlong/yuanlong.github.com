@@ -155,7 +155,27 @@
 			<div class="mui-page-content">
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
-						
+						<div width="100%" height="211px" class="player" >
+							<div class="playloading">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							</div>
+						<iframe border="0" src="about:blank" width="100%" height="211px" marginWidth="0" frameSpacing="0" marginHeight="0" frameBorder="0" scrolling="no" vspale="0" noResize></iframe>
+						</div>
+						<div class="mui-content-padded" style="margin: 20px 0px;padding: 0 15px;">
+    <h4>正片</h4>
+	<div style="display: block;overflow: auto hidden;width: 100%;">
+<ul class="" style="display: flex;padding-left: 0px;padding-right: 0px;padding: 0 .2rem 0 .4rem;overflow: hidden;overflow-x: auto;white-space: nowrap;list-style: none;margin: 10px 0;">
+<li class="current" style="flex-shrink: 0;"><a >高清HD</a> </li>
+
+</ul>
+</div>
+</div>
+<div class="mui-content-padded" style="margin: 20px 0px;padding: 0 15px;" id="moiveIntr">
+
 					</div>
 				</div>
 			</div>
@@ -180,6 +200,17 @@
 								<div class="mui-card-footer">{{name}}</div>
 						</div>
 		</li>
+</script>
+<script id="moiveIntrTemplate" type="text/html">
+<h4>{{name}}</h4>
+<div class="desc">
+<p><span class="t3">类型：{{type}}</span></p>
+<p><span class="t3">地区：{{area}}</span></p>
+<p><span class="t3">导演：{{director}}</span></p>
+<p><span class="t3">演员：{{actor}}</span></p>
+<p><span>简介：{{content}}</span></p>
+</div>
+</div>
 </script>
 <script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
