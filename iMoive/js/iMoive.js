@@ -58,6 +58,24 @@ function loadMoives(cid, page,clean) {
 			hideLoading();
         })
 }
+function searchMoives(wd,page,clean){
+	showLoading();
+    jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + page +
+        "&g=plus&play=kuyun&wd=" + wd,
+        function (data) {
+			if(clean){
+				content.empty();
+			}
+            for (var i = 0; i < data.data.length; i++) {
+                var moive = data.data[i];
+                var html = MoiveTMPL.replaceAll("{{id}}", moive.vod_id).replaceAll("{{img}}", moive.vod_pic).replaceAll(
+                    "{{name}}", moive.vod_name);
+                content.append(html);
+            }
+			jQuery("img.lazy").lazyload({placeholder:"data:image/gif;base64,R0lGODlhCwAPAIAAAFVVVf///yH5BAEAAAEALAAAAAALAA8AAAILhI+py+0Po5y0wgIAOw==",effect: "fadeIn"});
+			hideLoading();
+        })
+}
 function showLoading(){
 	jQuery(".mui-mask,.loading").show();
 
@@ -79,3 +97,13 @@ jQuery("#menu").on("tap","li",function(){
 	offCanvasWrapper.offCanvas('close');
 }
 );
+jQuery(".mui-search").on('submit', '.moive-search-form', function(event){
+    event.preventDefault();
+});
+jQuery("input[type=search]").on("keypress",function(e){
+	var keycode=e.keyCode;
+	if(keycode=='13'){
+		e.preventDefault();
+		searchMoives(jQuery(this).val(),1,true);
+	}
+})
