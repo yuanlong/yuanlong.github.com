@@ -1,4 +1,16 @@
 jQuery(function(){
+ function launchFullScreen(element) {
+        if(element.requestFullScreen) {
+            element.requestFullScreen();
+        } else if(element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if(element.webkitRequestFullScreen) {
+            element.webkitRequestFullScreen();
+        }
+    }
+	try{
+        launchFullScreen(document.documentElement);
+	}catch(e){}
 if(mui.os.wechat){
 jQuery("body").html('<div class="fill" style="z-index: 999; width:100%;height:100%;"><div class="reference">请在手机浏览器打开</div><div class="clock" id="utility-clock"><div class="centre"><div class="dynamic"></div><div class="expand round circle-1"></div><div class="anchor hour"><div class="element thin-hand"></div><div class="element fat-hand"></div></div><div class="anchor minute"><div class="element thin-hand"></div><div class="element fat-hand minute-hand"></div></div><div class="anchor second"><div class="element second-hand"></div></div><div class="expand round circle-2"></div><div class="expand round circle-3"></div></div></div></div>');
 var clock=document.querySelector('#utility-clock')
