@@ -8,7 +8,7 @@ mui.init({
     swipeBack: false
 });
 var viewApi = mui('#app').view({
-    defaultPage: '#setting'
+    defaultPage: '#index'
 });
 var oldBack = mui.back;
 mui.back = function () {
