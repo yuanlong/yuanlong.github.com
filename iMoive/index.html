@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
 		<meta name="robots" content="nofollow">
 		<meta name="robots" content="noarchive">
 		<link rel="stylesheet" href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css">
@@ -14,7 +16,7 @@
 
 	<body class="mui-fullscreen">
 		<!--侧滑菜单容器-->
-		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap ">
 			<!--菜单部分-->
 			<aside id="offCanvasSide" class="mui-off-canvas-right">
 				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
@@ -160,12 +162,10 @@
 							</div>
 						<iframe border="0" src="about:blank" width="100%" height="211px" marginWidth="0" frameSpacing="0" marginHeight="0" frameBorder="0" scrolling="no" vspale="0" noResize></iframe>
 						</div>
-						<div class="mui-content-padded" style="margin: 20px 0px;padding: 0 15px;">
+						<div class="mui-content-padded" style="margin: 20px 0px;padding: 0 15px;height: 60px;">
     <h4>正片</h4>
-	<div style="display: block;overflow: auto hidden;width: 100%;">
-<ul class="" style="display: flex;padding-left: 0px;padding-right: 0px;padding: 0 .2rem 0 .4rem;overflow: hidden;overflow-x: auto;white-space: nowrap;list-style: none;margin: 10px 0;">
-<li class="current" style="flex-shrink: 0;"><a >高清HD</a> </li>
-
+	<div class="playlist mui-scroll">
+<ul>
 </ul>
 </div>
 </div>
@@ -210,7 +210,8 @@
 <script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
-<script src="./js/mui.view.js "></script>
-<script src="./js/iMoive.js "></script>
+<script src="./js/mui.view.js"></script>
+<script src="./js/mui.pullToRefresh.js"></script>
+<script src="./js/iMoive.js"></script>
 </body>
 </html>

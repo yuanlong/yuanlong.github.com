@@ -135,7 +135,7 @@ span.mui-icon {
 .mui-views, .mui-view, .mui-pages, .mui-page, .mui-page-content, .mui-content {
     background-color: #333;
 }
-input, .mui-title,.mui-bar .mui-btn-link,span.mui-icon, #offCanvasBtn {
+input, .mui-title, .mui-bar .mui-btn-link, span.mui-icon, #offCanvasBtn {
     color: #f4a502;
 }
 input[type=search] {
@@ -165,11 +165,13 @@ input[type=search] {
     line-height: 15px;
     padding: 2px;
     text-align: center;
-	overflow: hidden;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.mui-card-footer:before, .mui-card-header:after{    background-color: rgba(0, 0, 0, 0);}
+.mui-card-footer:before, .mui-card-header:after {
+    background-color: rgba(0, 0, 0, 0);
+}
 .moivecontent {
     text-align: center;
 }
@@ -184,8 +186,8 @@ input[type=search] {
     width: 32.25%;
     text-align: center;
 }
-.loading{
-	 height: 40px;
+.loading {
+    height: 40px;
     margin: 0 auto;
     margin-top: 50px;
     position: absolute;
@@ -193,43 +195,87 @@ input[type=search] {
     z-index: 9999;
     width: 100%;
     text-align: center;
+}
+.loading span {
+    display: inline-block;
+    width: 8px;
+    height: 100%;
+    border-radius: 4px;
+    background: #986702;
+    -webkit-animation: load 1s ease infinite;
+    animation: load 1s ease infinite;
+}
+@-webkit-keyframes load {
+    0%, 100% {
+        height: 40px;
+        background: #986702;
+    }
+    50% {
+        height: 70px;
+        margin: -15px 0;
+        background: #f4a502;
+    }
+}
+.loading span:nth-child(2) {
+    -webkit-animation-delay:0.2s;
+    animation-delay:0.2s;
+}
+.loading span:nth-child(3) {
+    -webkit-animation-delay:0.4s;
+    animation-delay:0.4s;
+}
+.loading span:nth-child(4) {
+    -webkit-animation-delay:0.6s;
+    animation-delay:0.6s;
+}
+.loading span:nth-child(5) {
+    -webkit-animation-delay:0.8s;
+    animation-delay:0.8s;
+}
+.moreloading{
+		height: 8px;
+		margin: 0 auto;
+		margin-top:0px;
+		width:100%;
+		text-align: center;
+}
+.moreloading span{
+	display: inline-block;
+	width: 8px;
+	height: 100%;
+	margin-right: 5px;
+	border-radius: 50%;
+	background: #f4a502;
+	-webkit-animation: moreload 1.04s ease infinite;
+}
+.moreloading span:last-child{
+	margin-right: 0px; 
+}
+@-webkit-keyframes moreload{
+	0%{
+		opacity: 1;
 	}
-	.loading span{
-		display: inline-block;
-		width: 8px;
-		height: 100%;
-		border-radius: 4px;
-		background: #986702;
-		-webkit-animation: load 1s ease infinite;
-		animation: load 1s ease infinite;
+	100%{
+		opacity: 0;
 	}
-	@-webkit-keyframes load{
-		0%,100%{
-			height: 40px;
-			background: #986702;
-		}
-		50%{
-			height: 70px;
-			margin: -15px 0;
-			background: #f4a502;
-		}
-	}
-	.loading span:nth-child(2){
-		-webkit-animation-delay:0.2s;
-		animation-delay:0.2s;
-	}
-	.loading span:nth-child(3){
-		-webkit-animation-delay:0.4s;
-		animation-delay:0.4s;
-	}
-	.loading span:nth-child(4){
-		-webkit-animation-delay:0.6s;
-		animation-delay:0.6s;
-	}
-	.loading span:nth-child(5){
-		-webkit-animation-delay:0.8s;
-		animation-delay:0.8s;
-	}
+}
+.moreloading span:nth-child(1){
+	-webkit-animation-delay:0.13s;
+}
+.moreloading span:nth-child(2){
+	-webkit-animation-delay:0.26s;
+}
+.moreloading span:nth-child(3){
+	-webkit-animation-delay:0.39s;
+}
+.moreloading span:nth-child(4){
+	-webkit-animation-delay:0.52s;
+}
+.moreloading span:nth-child(5){
+	-webkit-animation-delay:0.65s;
+}
+
+
 .mui-mask {
     position: fixed;
     z-index: 998;
@@ -239,56 +285,93 @@ input[type=search] {
     left: 0;
     -webkit-transition-duration: 400ms;
     transition-duration: 400ms;
-    background: rgba(0,0,0,.4);
+    background: rgba(0, 0, 0, .4);
 }
-.mui-navbar-left{opacity: 0;}
-.player{
-background: #000;
+.mui-navbar-left {
+    opacity: 0;
+}
+.player {
+    background: #000;
     display: block;
     height: 211px;
 }
-.player iframe{    position: absolute;}
-.playloading{
-		width: 100%;
-		height: 40px;
-		margin: 0 auto;
-		margin-top:100px;
-		position: absolute;
-	 text-align: center;
-	}
-	.playloading span{
-		display: inline-block;
-		width: 8px;
-		height: 100%;
-		border-radius: 4px;
-		background: #986702;
-		-webkit-animation: playload 1.04s ease infinite;
-	}
-	@-webkit-keyframes playload{
-		0%,100%{
-			height: 40px;
-			background: #986702;
-		}
-		50%{
-			height: 60px;
-			margin-top: -20px;
-			background: #f4a502;
-		}
-	}
-	.playloading span:nth-child(2){
-		-webkit-animation-delay:0.13s;
-	}
-	.playloading span:nth-child(3){
-		-webkit-animation-delay:0.26s;
-	}
-	.playloading span:nth-child(4){
-		-webkit-animation-delay:0.39s;
-	}
-	.playloading span:nth-child(5){
-		-webkit-animation-delay:0.52s;
-	}
-
-.desc{margin-top: 10px;}
-.desc p{    text-indent: 0px;
-    margin-bottom: 0px;}
-.desc p span{color: #8f8f94!important;}
+.player iframe {
+    position: absolute;
+}
+.playloading {
+    width: 100%;
+    height: 40px;
+    margin: 0 auto;
+    margin-top:100px;
+    position: absolute;
+    text-align: center;
+}
+.playloading span {
+    display: inline-block;
+    width: 8px;
+    height: 100%;
+    border-radius: 4px;
+    background: #986702;
+    -webkit-animation: playload 1.04s ease infinite;
+}
+@-webkit-keyframes playload {
+    0%, 100% {
+        height: 40px;
+        background: #986702;
+    }
+    50% {
+        height: 60px;
+        margin-top: -20px;
+        background: #f4a502;
+    }
+}
+.playloading span:nth-child(2) {
+    -webkit-animation-delay:0.13s;
+}
+.playloading span:nth-child(3) {
+    -webkit-animation-delay:0.26s;
+}
+.playloading span:nth-child(4) {
+    -webkit-animation-delay:0.39s;
+}
+.playloading span:nth-child(5) {
+    -webkit-animation-delay:0.52s;
+}
+.desc {
+    margin-top: 10px;
+}
+.desc p {
+    text-indent: 0px;
+    margin-bottom: 0px;
+}
+.desc p span {
+    color: #8f8f94!important;
+}
+.playlist {
+    display: block;
+    overflow: auto hidden;
+    width: 93%;
+}
+.playlist ul {
+    display: flex;
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    list-style: none;
+    margin: 10px 0;
+}
+.playlist ul li {
+    flex-shrink: 0;
+    line-height: 26px;
+    padding: 0 5px;
+    background: #333;
+    font-size: 12px;
+    border: 1px solid;
+	margin-right:5px;
+}
+.playlist ul li.current {
+    background: #fff;
+}
+.playlist ul li a{color: #f4a502;}
