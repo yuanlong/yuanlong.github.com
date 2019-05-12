@@ -23,19 +23,19 @@ mui('.mui-scroll-wrapper').scroll({
     deceleration: 0.0005
 });
 
-var pullRefresh=mui('#offCanvasContentScroll .mui-scroll').pullToRefresh({
+var pullRefresh = mui('#offCanvasContentScroll .mui-scroll').pullToRefresh({
     up: {
         show: false,
-		contentdown:"",
-		contentnomore:"",
+        contentdown: "",
+        contentnomore: "",
         contentrefresh: '<div class="moreloading"><span></span><span></span><span></span><span></span><span></span></div>',
         callback: function () {
             page = page + 1;
-			if(curType=="search"){
-				searchMoives(jQuery("input[type=search]").val(), page, false);
-			}else{
-				loadMoives(cid, page, false);
-			}
+            if (curType == "search") {
+                searchMoives(jQuery("input[type=search]").val(), page, false);
+            } else {
+                loadMoives(cid, page, false);
+            }
         }
     }
 });
@@ -53,7 +53,7 @@ var MOIVES = {};
 //jQuery.getJSON("https://cors-anywhere.herokuapp.com/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=1&g=plus&play=kuyun&cid=5",function(data){
 var cid = 5;
 var page = 1;
-var curType="list";
+var curType = "list";
 loadMoives(cid, page, true);
 
 function showMoives(data, clean) {
@@ -72,11 +72,11 @@ function showMoives(data, clean) {
         effect: "fadeIn"
     });
     hideLoading();
-	if(data.data.length<30){
-		pullRefresh.endPullUpToRefresh(true);
-	}else{
-		pullRefresh.endPullUpToRefresh();
-	}
+    if (data.data.length < 30) {
+        pullRefresh.endPullUpToRefresh(true);
+    } else {
+        pullRefresh.endPullUpToRefresh();
+    }
 }
 
 function loadMoives(cid, page, clean) {
@@ -87,7 +87,9 @@ function loadMoives(cid, page, clean) {
         "&g=plus&play=kuyun&cid=" + cid,
         function (data) {
             showMoives(data, clean);
-        }).error(function() {pullRefresh.endPullUpToRefresh();});
+        }).error(function () {
+        pullRefresh.endPullUpToRefresh();
+    });
 }
 
 function searchMoives(wd, page, clean) {
@@ -99,7 +101,9 @@ function searchMoives(wd, page, clean) {
         "&g=plus&play=kuyun&wd=" + wd,
         function (data) {
             showMoives(data, clean);
-        }).error(function() {pullRefresh.endPullUpToRefresh();});
+        }).error(function () {
+        pullRefresh.endPullUpToRefresh();
+    });
 }
 
 function showLoading() {
@@ -147,12 +151,12 @@ jQuery(".moivecontent").on("tap", ".mui-card", function () {
 });
 jQuery("#menu").on("tap", "li", function () {
     var curCid = jQuery(this).data("cid");
-    if (cid != curCid||curType=="search") {
+    if (cid != curCid || curType == "search") {
         cid = curCid;
         page = 1;
-		curType="list";		
-		pullRefresh.refresh(true);
-		jQuery("input[type=search]").val("");
+        curType = "list";
+        pullRefresh.refresh(true);
+        jQuery("input[type=search]").val("");
         loadMoives(cid, page, true);
     }
     offCanvasWrapper.offCanvas('close');
@@ -176,9 +180,9 @@ jQuery("input[type=search]").on("keypress", function (e) {
     var keycode = e.keyCode;
     if (keycode == '13') {
         e.preventDefault();
-		page=1;
-		curType="search";
-		pullRefresh.refresh(true);
+        page = 1;
+        curType = "search";
+        pullRefresh.refresh(true);
         searchMoives(jQuery(this).val(), 1, true);
     }
 })

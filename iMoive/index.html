@@ -13,8 +13,7 @@
 		<link rel="stylesheet" href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css">
 		<link rel="stylesheet" href="./css/iMoive.css">
 	</head>
-
-	<body class="mui-fullscreen">
+<body class="mui-fullscreen">
 		<!--侧滑菜单容器-->
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap ">
 			<!--菜单部分-->
@@ -103,18 +102,16 @@
 					</div>
 				</div>
 			</aside>
-			<div class="mui-inner-wrap">
-			<!--页面主结构开始-->
-			<div id="app" class="mui-views">
-			<div class="mui-view">
-				<div class="mui-navbar">
-				</div>
-				<div class="mui-pages">
-				</div>
+		<div class="mui-inner-wrap">
+		<div id="app" class="mui-views">
+		<div class="mui-view">
+			<div class="mui-navbar">
 			</div>
+			<div class="mui-pages">
 			</div>
-		<!--页面主结构结束-->
-		<div id="setting" class="mui-page">
+		</div>
+		</div>
+		<div id="index" class="mui-page">
 				<div class="mui-navbar-inner mui-bar mui-bar-nav">
 					<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right"></a>
 					<h1 class="mui-title">iMoive</h1>
@@ -142,7 +139,7 @@
 		</div>
 
 
-<div id="play" class="mui-page">
+	<div id="play" class="mui-page">
 			<div class="mui-navbar-inner mui-bar mui-bar-nav">
 				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
 					<span class="mui-icon mui-icon-left-nav"></span>首页
@@ -165,13 +162,13 @@
 						<div class="mui-content-padded" style="margin: 20px 0px;padding: 0 15px;height: 60px;">
     <h4>正片</h4>
 	<div class="playlist mui-scroll">
-<ul>
-</ul>
-</div>
+	<ul>
+	</ul>
+	</div>
 </div>
 <div class="mui-content-padded" style="margin: 20px 0px;padding: 0 15px;" id="moiveIntr">
 
-					</div>
+</div>
 				</div>
 			</div>
 		</div>
@@ -186,14 +183,14 @@
 </div>
 
 <script id="moiveTemplate" type="text/html">
-		<li>				<div class="mui-card" data-id="{{id}}">
-								<div class="mui-card-content">
-									<div class="mui-card-content-inner">
-										<img class="lazy" data-original="{{img}}"/>
-									</div>
-								</div>
-								<div class="mui-card-footer">{{name}}</div>
-						</div>
+		<li><div class="mui-card" data-id="{{id}}">
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<img class="lazy" data-original="{{img}}"/>
+					</div>
+				</div>
+				<div class="mui-card-footer">{{name}}</div>
+			</div>
 		</li>
 </script>
 <script id="moiveIntrTemplate" type="text/html">
