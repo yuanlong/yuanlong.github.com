@@ -22,6 +22,7 @@ span.mui-icon {
     font-size: 14px;
     line-height: 24px;
 }
+.mui-off-canvas-left, .mui-off-canvas-right{max-width: 300px;}
 .mui-views, .mui-view, .mui-pages, .mui-page, .mui-page-content {
     position: absolute;
     left: 0;
