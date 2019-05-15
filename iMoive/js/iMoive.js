@@ -248,9 +248,11 @@ jQuery("input[type=search]").on("keypress", function (e) {
         searchMoives(jQuery(this).val(), 1, true);
     }
 });
- jQuery(".player,.player iframe").height(parseInt(window.innerWidth*0.5627));
-
+function resize(){
+ jQuery(".player,.player iframe").height(parseInt(window.innerWidth*0.5627)>window.innerHeight?window.innerHeight:parseInt(window.innerWidth*0.5627));
+}
+	resize();
 jQuery(window).resize(function(){
-   jQuery(".player,.player iframe").height(parseInt(window.innerWidth*0.5627));
+  resize();
 });
 });
