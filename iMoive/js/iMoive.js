@@ -250,5 +250,7 @@ jQuery("input[type=search]").on("keypress", function (e) {
 });
  jQuery(".player,.player iframe").height(parseInt(window.innerWidth*0.5627));
 
-
+jQuery(window).resize(function(){
+   jQuery(".player,.player iframe").height(parseInt(window.innerWidth*0.5627));
+});
 });
