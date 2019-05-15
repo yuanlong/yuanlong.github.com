@@ -141,25 +141,29 @@ function showMoives(data, clean) {
     }
 }
 
-function loadMoives(cid, page, clean) {
+function loadMoives(cid, pg, clean) {
     if (clean) {
         showLoading();
     }
-    jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + page +
+    jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&cid=" + cid,
         function (data) {
             showMoives(data, clean);
+			if($(content).height()<window.innerHeight){
+				page=page+1;
+loadMoives(cid,page,false);
+			}
         }).error(function () {
         pullRefresh.endPullUpToRefresh();
     });
 }
 
-function searchMoives(wd, page, clean) {
+function searchMoives(wd, pg, clean) {
     if (wd == "") return;
     if (clean) {
         showLoading();
     }
-    jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + page +
+    jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&wd=" + wd,
         function (data) {
             showMoives(data, clean);
