@@ -185,7 +185,7 @@ input[type=search] {
 .moivecontent li {
     display: inline-block;
     vertical-align: top;
-    width: 32.25%;
+    width: 115px;
     text-align: center;
 }
 .loading {
