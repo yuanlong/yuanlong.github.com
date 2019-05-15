@@ -248,6 +248,7 @@ jQuery("input[type=search]").on("keypress", function (e) {
         searchMoives(jQuery(this).val(), 1, true);
     }
 });
+ jQuery(".player,.player iframe").height(parseInt(window.innerWidth*0.5627));
 
 
 });
