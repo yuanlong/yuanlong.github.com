@@ -145,7 +145,7 @@ function loadMovies(cid, pg, clean) {
     if (clean) {
         showLoading();
     }
-    jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+    jQuery.getJSON("https://bird.ioliu.cn/v1/?url=https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&cid=" + cid,
         function (data) {
             showMovies(data, clean);
@@ -163,7 +163,7 @@ function searchMovies(wd, pg, clean) {
     if (clean) {
         showLoading();
     }
-    jQuery.getJSON("https://proxy.zme.ink/https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+    jQuery.getJSON("https://bird.ioliu.cn/v1/?url=https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&wd=" + wd,
         function (data) {
             showMovies(data, clean);
