@@ -145,8 +145,8 @@ function loadMovies(cid, pg, clean) {
     if (clean) {
         showLoading();
     }
-    jQuery.getJSON("https://bird.ioliu.cn/v1/?url=https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
-        "&g=plus&play=kuyun&cid=" + cid,
+    jQuery.getJSON("https://jsonp.afeld.me/?url="+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+        "&g=plus&play=kuyun&cid=" + cid),
         function (data) {
             showMovies(data, clean);
 			if($(content).height()<window.innerHeight){
@@ -163,8 +163,8 @@ function searchMovies(wd, pg, clean) {
     if (clean) {
         showLoading();
     }
-    jQuery.getJSON("https://bird.ioliu.cn/v1/?url=https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
-        "&g=plus&play=kuyun&wd=" + wd,
+    jQuery.getJSON("https://jsonp.afeld.me/?url="+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+        "&g=plus&play=kuyun&wd=" + wd),
         function (data) {
             showMovies(data, clean);
         }).error(function () {
