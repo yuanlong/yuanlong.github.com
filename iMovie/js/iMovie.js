@@ -198,6 +198,9 @@ jQuery(".moviecontent").on("tap", ".mui-card", function () {
         if (vod_urls.length > 0) {
             vod_urls = vod_urls[0].split(/\r\n/);
             var url = vod_urls[0].split("$")[1];
+		if(url.startsWith("http://")){
+		url=url.replace("http://","https://")
+		}
             if (url.endsWith(".m3u8")) {
                 url = "https://www.ixxplayer.com/video.php?url=" + url;
             }
@@ -230,6 +233,9 @@ jQuery("#menu").on("tap", "li", function () {
 
 jQuery(".playlist").on("tap", "li", function () {
     var url = jQuery(this).data("url");
+	if(url.startsWith("http://")){
+		url=url.replace("http://","https://")
+		}
     if (url.endsWith(".m3u8")) {
         url = "https://www.ixxplayer.com/video.php?url=" + url;
     }
