@@ -60,6 +60,9 @@ update()
 window.addEventListener('resize',update)}
 return ;
 }
+
+(function(e){e.retryAjax=function(t){var n;t.tryCount=t.tryCount?t.tryCount:0,t.retryLimit=t.retryLimit?t.retryLimit:2,t.suppressErrors=!0,t.error?(n=t.error,delete t.error):n=function(){},t.complete=function(t,r){if(e.inArray(r,["timeout","abort","error"])>-1)return this.tryCount++,this.tryCount<=this.retryLimit?(this.tryCount===this.retryLimit&&(this.error=n,delete this.suppressErrors),e.ajax(this),!0):(window.alert("There was a server error.  Please refresh the page.  If the issue persists, give us a call. Thanks!"),!0)},e.ajax(t)}})(jQuery);
+
 String.prototype.replaceAll = stringReplaceAll;
 
 function stringReplaceAll(AFindText, ARepText) {
@@ -77,6 +80,7 @@ mui.back = function () {
     if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
         viewApi.back();
         jQuery(".player iframe").attr("src", "about:blank");
+		sessionStorage.removeItem('$currMovie');
     } else { //执行webview后退
         oldBack();
     }
@@ -145,17 +149,27 @@ function loadMovies(cid, pg, clean) {
     if (clean) {
         showLoading();
     }
-    jQuery.getJSON("https://jsonp.afeld.me/?url="+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+    jQuery.retryAjax({
+		url:"https://jsonp.afeld.me/?url="+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&cid=" + cid),
-        function (data) {
+		timeout: 5000,
+        retryLimit: 3,
+		dataType:"JSON",
+        success:function (data) {
             showMovies(data, clean);
 			if($(content).height()<window.innerHeight){
 				page=page+1;
 loadMovies(cid,page,false);
 			}
-        }).error(function () {
+        }
+		,
+		error:function () {
+		hideLoading();
         pullRefresh.endPullUpToRefresh();
-    });
+    }});
+	setTimeout(function(){
+		hideLoading();
+	},10000);
 }
 
 function searchMovies(wd, pg, clean) {
@@ -163,13 +177,19 @@ function searchMovies(wd, pg, clean) {
     if (clean) {
         showLoading();
     }
-    jQuery.getJSON("https://jsonp.afeld.me/?url="+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+     jQuery.retryAjax({
+		 url:"https://jsonp.afeld.me/?url="+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&wd=" + wd),
-        function (data) {
+        timeout: 5000,
+        retryLimit: 3,
+		dataType:"JSON",
+        success:function (data) {
             showMovies(data, clean);
-        }).error(function () {
+        },
+		error:function () {
+			hideLoading();
         pullRefresh.endPullUpToRefresh();
-    });
+    }});
 }
 
 function showLoading() {
@@ -187,7 +207,11 @@ jQuery(".moviecontent").on("tap", ".mui-card", function () {
     if (movie == undefined) {
         return;
     }
-    var html = InterTMPL.replaceAll("{{name}}", movie.vod_name).replaceAll("{{type}}", movie.list_name).replaceAll(
+   showMovie(movie);
+   sessionStorage.setItem('$currMovie',JSON.stringify(movie));
+});
+function showMovie(movie){
+ var html = InterTMPL.replaceAll("{{name}}", movie.vod_name).replaceAll("{{type}}", movie.list_name).replaceAll(
         "{{area}}", movie.vod_area).replaceAll(
         "{{director}}", movie.vod_director).replaceAll(
         "{{actor}}", movie.vod_actor).replaceAll(
@@ -217,7 +241,8 @@ jQuery(".moviecontent").on("tap", ".mui-card", function () {
     }
     jQuery("#moviename").text(movie.vod_name);
     viewApi.go("#play");
-});
+}
+
 jQuery("#menu").on("tap", "li", function () {
     var curCid = jQuery(this).data("cid");
     if (cid != curCid || curType == "search") {
@@ -265,4 +290,11 @@ function resize(){
 jQuery(window).resize(function(){
   resize();
 });
+try{
+	var curMovie=sessionStorage.getItem('$currMovie') || "";
+	if(curMovie!=""){
+		var mov=JSON.parse(curMovie);
+		showMovie(mov);
+	}
+}catch(e){}
 });
