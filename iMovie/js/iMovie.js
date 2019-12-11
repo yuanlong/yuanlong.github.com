@@ -121,13 +121,14 @@ var cid = 5;
 var page = 1;
 var curType = "list";
 loadMovies(cid, page, true);
-
 function showMovies(data, clean) {
     if (clean) {
         content.empty();
     }
     for (var i = 0; i < data.data.length; i++) {
+		
         var movie = data.data[i];
+		if(movie.vod_cid>19){continue;}//屏蔽
         MOVIES[movie.vod_id] = movie;
         var html = MovieTMPL.replaceAll("{{id}}", movie.vod_id).replaceAll("{{img}}", movie.vod_pic).replaceAll(
             "{{name}}", movie.vod_name);
