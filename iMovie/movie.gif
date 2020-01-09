@@ -2,3 +2,8 @@ CACHE MANIFEST
 /iMovie/
 /iMovie/index.html
 /iMovie/favicon.png
+./css/*
+./js/*
+
+NETWORK:
+*
