@@ -2,8 +2,3 @@ CACHE MANIFEST
 /iMovie/
 /iMovie/index.html
 /iMovie/favicon.png
-/iMovie/css/iMovie.css
-/iMovie/js/iMovie.js
-/iMovie/js/jquery.lazyload.min.js
-/iMovie/js/mui.pullToRefresh.js
-/iMovie/js/mui.view.js
