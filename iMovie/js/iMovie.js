@@ -80,7 +80,7 @@ mui.back = function () {
     if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
         viewApi.back();
         jQuery(".player iframe").attr("src", "about:blank");
-		sessionStorage.removeItem('$currMovie');
+		localStorage.removeItem('$currMovie');
     } else { //执行webview后退
         oldBack();
     }
@@ -209,7 +209,7 @@ jQuery(".moviecontent").on("tap", ".mui-card", function () {
         return;
     }
    showMovie(movie);
-   sessionStorage.setItem('$currMovie',JSON.stringify(movie));
+   localStorage.setItem('$currMovie',JSON.stringify(movie));
 });
 function showMovie(movie){
  var html = InterTMPL.replaceAll("{{name}}", movie.vod_name).replaceAll("{{type}}", movie.list_name).replaceAll(
@@ -292,7 +292,7 @@ jQuery(window).resize(function(){
   resize();
 });
 try{
-	var curMovie=sessionStorage.getItem('$currMovie') || "";
+	var curMovie=localStorage.getItem('$currMovie') || "";
 	if(curMovie!=""){
 		var mov=JSON.parse(curMovie);
 		showMovie(mov);
