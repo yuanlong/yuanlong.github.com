@@ -10,7 +10,9 @@
 		<meta name="x5-fullscreen" content="true">
 		<meta name="robots" content="nofollow">
 		<meta name="robots" content="noarchive">
+		<link rel="manifest" href="./manifest.gif">
 		<link rel="apple-touch-icon" href="./favicon.png"/>
+		<link href="./favicon.png" rel="shortcut icon"/>
 		<link rel="stylesheet" href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css">
 		<link rel="stylesheet" href="./css/iMovie.css">
 	</head>
@@ -29,6 +31,11 @@
 						</div>
 						<div class="title" style="margin-bottom: 25px;">分类导航</div>
 						<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" id="menu">
+						<li class="mui-table-view-cell" data-type="history">
+								<a class="mui-navigate-right">
+									最近访问
+								</a>
+							</li>
 							<li class="mui-table-view-cell" data-cid="5">
 								<a class="mui-navigate-right">
 									动作片

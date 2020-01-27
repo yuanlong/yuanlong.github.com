@@ -210,7 +210,18 @@ jQuery(".moviecontent").on("tap", ".mui-card", function () {
     }
    showMovie(movie);
    localStorage.setItem('$currMovie',JSON.stringify(movie));
+   saveMovie(movie);
 });
+
+var db;
+
+
+function loadHistory(){
+	showLoading();
+	queryMovie();
+	hideLoading();
+}
+
 function showMovie(movie){
  var html = InterTMPL.replaceAll("{{name}}", movie.vod_name).replaceAll("{{type}}", movie.list_name).replaceAll(
         "{{area}}", movie.vod_area).replaceAll(
@@ -246,14 +257,20 @@ function showMovie(movie){
 
 jQuery("#menu").on("tap", "li", function () {
     var curCid = jQuery(this).data("cid");
-    if (cid != curCid || curType == "search") {
+    if (curCid!=undefined&&cid != curCid || curType == "search"||curType=="history") {
         cid = curCid;
         page = 1;
         curType = "list";
         pullRefresh.refresh(true);
         jQuery("input[type=search]").val("");
         loadMovies(cid, page, true);
-    }
+    }else{
+		var type=jQuery(this).data("type");
+		if(type!=undefined&&type=='history'){
+			curType="history";
+			loadHistory();
+		}
+	}
     offCanvasWrapper.offCanvas('close');
 });
 
@@ -298,4 +315,51 @@ try{
 		showMovie(mov);
 	}
 }catch(e){}
+
+//设置数据库
+var dbsize = 2 * 2014 * 1024;
+db = openDatabase("iMovie", "", "", dbsize);
+db.transaction(function (tx) {
+	tx.executeSql("CREATE TABLE IF NOT EXISTS movies (id integer PRIMARY KEY,movieData text,last_date datetime)");
+	deleteMovie();
+});
+function saveMovie(mov){
+	 db.transaction(function (tx) {
+            //新增数据
+            tx.executeSql("INSERT INTO movies(id,movieData,last_date) values(?,?,datetime('now','localtime'))", [mov.vod_id, JSON.stringify(mov)],
+                    function (tx, result) {
+
+                    }, function (e) {
+                    });
+        });
+}
+function deleteMovie(){
+	db.transaction(function (tx) {
+                    tx.executeSql("DELETE FROM movies WHERE  last_date<datetime('now', '-7 day')", [], function (tx, result) {
+                        
+                    }, function (e) {
+                    });
+    });
+}
+function queryMovie(){
+	db.transaction(function (tx) {
+            //显示list
+            tx.executeSql("SELECT id,movieData,last_date FROM movies ORDER BY last_date desc", [],
+                    function (tx, result) {
+                        if (result.rows.length > 0) {
+							var movies=[];
+                            for (var i = 0; i < result.rows.length; i++) {
+                                item = result.rows.item(i);
+								movies.push(JSON.parse(item["movieData"]));
+                            }
+							var data={"data":movies};
+							showMovies(data,true);
+                        }
+                        
+                    }, function (e) {
+                        
+                    }
+            );
+    });
+}
 });
