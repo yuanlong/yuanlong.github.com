@@ -268,6 +268,7 @@ jQuery("#menu").on("tap", "li", function () {
 		var type=jQuery(this).data("type");
 		if(type!=undefined&&type=='history'){
 			curType="history";
+			
 			loadHistory();
 		}
 	}
