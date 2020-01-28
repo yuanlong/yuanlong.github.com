@@ -257,8 +257,8 @@ function showMovie(movie){
 
 jQuery("#menu").on("tap", "li", function () {
     var curCid = jQuery(this).data("cid");
-    if (curCid!=undefined&&cid != curCid || curType == "search"||curType=="history") {
-        cid = curCid;
+    if (curCid!=undefined&&(cid != curCid || curType == "search"||curType=="history")) {
+        cid = curCid||5;
         page = 1;
         curType = "list";
         pullRefresh.refresh(true);
