@@ -11,53 +11,13 @@ jQuery(function(){
 	try{
         launchFullScreen(document.documentElement);
 	}catch(e){}
+function loadscript(url) {
+    var script = document.createElement("script");
+    script.src = url;
+    document.body.appendChild(script);
+}
 if(mui.os.wechat){
-jQuery("body").html('<div class="fill" style="z-index: 999; width:100%;height:100%;"><div class="reference">请在手机浏览器打开</div><div class="clock" id="utility-clock"><div class="centre"><div class="dynamic"></div><div class="expand round circle-1"></div><div class="anchor hour"><div class="element thin-hand"></div><div class="element fat-hand"></div></div><div class="anchor minute"><div class="element thin-hand"></div><div class="element fat-hand minute-hand"></div></div><div class="anchor second"><div class="element second-hand"></div></div><div class="expand round circle-2"></div><div class="expand round circle-3"></div></div></div></div>');
-var clock=document.querySelector('#utility-clock')
-utilityClock(clock)
-if(clock.parentNode.classList.contains('fill'))autoResize(clock,295+32)
-function utilityClock(container){var dynamic=container.querySelector('.dynamic')
-var hourElement=container.querySelector('.hour')
-var minuteElement=container.querySelector('.minute')
-var secondElement=container.querySelector('.second')
-var minute=function(n){return n%5==0?minuteText(n):minuteLine(n)}
-var minuteText=function(n){var element=document.createElement('div')
-element.className='minute-text'
-element.innerHTML=(n<10?'0':'')+n
-position(element,n/60,135)
-dynamic.appendChild(element)}
-var minuteLine=function(n){var anchor=document.createElement('div')
-anchor.className='anchor'
-var element=document.createElement('div')
-element.className='element minute-line'
-rotate(anchor,n)
-anchor.appendChild(element)
-dynamic.appendChild(anchor)}
-var hour=function(n){var element=document.createElement('div')
-element.className='hour-text hour-'+n
-element.innerHTML=n
-position(element,n/12,105)
-dynamic.appendChild(element)}
-var position=function(element,phase,r){var theta=phase*2*Math.PI
-element.style.top=(-r*Math.cos(theta)).toFixed(1)+'px'
-element.style.left=(r*Math.sin(theta)).toFixed(1)+'px'}
-var rotate=function(element,second){element.style.transform=element.style.webkitTransform='rotate('+(second*6)+'deg)'}
-var animate=function(){var now=new Date()
-var time=now.getHours()*3600+
-now.getMinutes()*60+
-now.getSeconds()*1+
-now.getMilliseconds()/1000
-rotate(secondElement,time)
-rotate(minuteElement,time/60)
-rotate(hourElement,time/60/12)
-requestAnimationFrame(animate)}
-for(var i=1;i<=60;i++)minute(i)
-for(var i=1;i<=12;i++)hour(i)
-animate()}
-function autoResize(element,nativeSize){var update=function(){var scale=Math.min(window.innerWidth,window.innerHeight)/nativeSize
-element.style.transform=element.style.webkitTransform='scale('+scale.toFixed(3)+')'}
-update()
-window.addEventListener('resize',update)}
+loadscript("js/clock.js");
 return ;
 }
 
@@ -121,7 +81,7 @@ var cid = 5;
 var page = 1;
 var curType = "list";
 loadMovies(cid, page, true);
-function showMovies(data, clean) {
+window.showMovies =function (data, clean) {
     if (clean) {
         content.empty();
     }
@@ -317,6 +277,11 @@ try{
 	}
 }catch(e){}
 
+if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+loadscript("js/jsstore.min.js");
+loadscript("js/jsstore.worker.min.js");
+loadscript("js/history.js");
+}else{
 //设置数据库
 var dbsize = 2 * 2014 * 1024;
 db = openDatabase("iMovie", "", "", dbsize);
@@ -324,7 +289,7 @@ db.transaction(function (tx) {
 	tx.executeSql("CREATE TABLE IF NOT EXISTS movies (id integer PRIMARY KEY,movieData text,last_date datetime)");
 	deleteMovie();
 });
-function saveMovie(mov){
+window.saveMovie=function (mov){
 	 db.transaction(function (tx) {
             //新增数据
             tx.executeSql("INSERT INTO movies(id,movieData,last_date) values(?,?,datetime('now','localtime'))", [mov.vod_id, JSON.stringify(mov)],
@@ -334,7 +299,7 @@ function saveMovie(mov){
                     });
         });
 }
-function deleteMovie(){
+window.deleteMovie=function (){
 	db.transaction(function (tx) {
                     tx.executeSql("DELETE FROM movies WHERE  last_date<datetime('now', '-7 day')", [], function (tx, result) {
                         
@@ -342,7 +307,7 @@ function deleteMovie(){
                     });
     });
 }
-function queryMovie(){
+window.queryMovie=function (){
 	db.transaction(function (tx) {
             //显示list
             tx.executeSql("SELECT id,movieData,last_date FROM movies ORDER BY last_date desc", [],
@@ -362,5 +327,6 @@ function queryMovie(){
                     }
             );
     });
+}
 }
 });
