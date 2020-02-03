@@ -278,9 +278,9 @@ try{
 }catch(e){}
 
 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-loadscript("js/jsstore.min.js");
-loadscript("js/jsstore.worker.min.js");
+jQuery.getScript("js/jsstore.min.js",function(){
 loadscript("js/history.js");
+});
 }else{
 //设置数据库
 var dbsize = 2 * 2014 * 1024;
