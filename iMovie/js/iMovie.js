@@ -291,12 +291,22 @@ db.transaction(function (tx) {
 });
 window.saveMovie=function (mov){
 	 db.transaction(function (tx) {
-            //新增数据
-            tx.executeSql("INSERT INTO movies(id,movieData,last_date) values(?,?,datetime('now','localtime'))", [mov.vod_id, JSON.stringify(mov)],
+		 tx.executeSql("SELECT id FROM movies where id=?", [mov.vod_id],
                     function (tx, result) {
-
+                        if (result.rows.length > 0) {
+							tx.executeSql("UPDATE movies set movieData=?,last_date=datetime('now','localtime') where id=?", [JSON.stringify(mov), mov.vod_id],
+						function (tx, result) {}, function (e) {
+						});
+                        }else{
+						 //新增数据
+					tx.executeSql("INSERT INTO movies(id,movieData,last_date) values(?,?,datetime('now','localtime'))", [mov.vod_id, JSON.stringify(mov)],
+						function (tx, result) {}, function (e) {
+						});
+						}
                     }, function (e) {
-                    });
+                        
+                    }
+            );
         });
 }
 window.deleteMovie=function (){
