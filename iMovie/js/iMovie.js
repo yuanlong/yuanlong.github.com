@@ -20,7 +20,7 @@ if(mui.os.wechat){
 loadscript("js/clock.js");
 return ;
 }
-
+var CrossServer="https://jsonp.afeld.me/?url=";
 (function(e){e.retryAjax=function(t){var n;t.tryCount=t.tryCount?t.tryCount:0,t.retryLimit=t.retryLimit?t.retryLimit:2,t.suppressErrors=!0,t.error?(n=t.error,delete t.error):n=function(){},t.complete=function(t,r){if(e.inArray(r,["timeout","abort","error","parsererror"])>-1)return this.tryCount++,this.tryCount<=this.retryLimit?(this.tryCount===this.retryLimit&&(this.error=n,delete this.suppressErrors),e.ajax(this),!0):(window.alert("There was a server error.  Please refresh the page.  If the issue persists, give us a call. Thanks!"),!0)},e.ajax(t)}})(jQuery);
 
 String.prototype.replaceAll = stringReplaceAll;
@@ -111,7 +111,7 @@ function loadMovies(cid, pg, clean) {
         showLoading();
     }
     jQuery.retryAjax({
-		url:"https://jsonp.afeld.me/?url="+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+		url:CrossServer+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&cid=" + cid),
 		timeout: 5000,
         retryLimit: 3,
@@ -139,7 +139,7 @@ function searchMovies(wd, pg, clean) {
         showLoading();
     }
      jQuery.retryAjax({
-		 url:"https://jsonp.afeld.me/?url="+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+		 url:CrossServer+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&wd=" + wd),
         timeout: 5000,
         retryLimit: 3,
@@ -216,7 +216,8 @@ function showMovie(movie){
 }
 
 jQuery("#menu").on("tap", "li", function () {
-    var curCid = jQuery(this).data("cid");
+	var curMenu=jQuery(this);
+    var curCid = curMenu.data("cid");
     if (curCid!=undefined&&(cid != curCid || curType == "search"||curType=="history")) {
         cid = curCid||5;
         page = 1;
@@ -225,13 +226,14 @@ jQuery("#menu").on("tap", "li", function () {
         jQuery("input[type=search]").val("");
         loadMovies(cid, page, true);
     }else{
-		var type=jQuery(this).data("type");
+		var type=curMenu.data("type");
 		if(type!=undefined&&type=='history'){
 			curType="history";
 			
 			loadHistory();
 		}
 	}
+	document.querySelector("#app .mui-title").innerText=curMenu[0].innerText;
     offCanvasWrapper.offCanvas('close');
 });
 
