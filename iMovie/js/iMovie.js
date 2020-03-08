@@ -265,7 +265,7 @@ jQuery("input[type=search]").on("keypress", function (e) {
     }
 });
 function resize(){
- jQuery(".player,.player iframe").height(parseInt(window.innerWidth*0.5627)>(window.innerHeight-88)?(window.innerHeight-88):parseInt(window.innerWidth*0.5627));
+ jQuery(".player,.player iframe").height(parseInt(window.innerWidth*0.5627)>(window.innerHeight-145)?(window.innerHeight-145):parseInt(window.innerWidth*0.5627));
 }
 	resize();
 jQuery(window).resize(function(){
