@@ -181,8 +181,9 @@ function loadHistory(){
 	queryMovie();
 	hideLoading();
 }
-
+var curPlayID="";
 function showMovie(movie){
+	curPlayID=movie.vod_id;
  var html = InterTMPL.replaceAll("{{name}}", movie.vod_name).replaceAll("{{type}}", movie.list_name).replaceAll(
         "{{area}}", movie.vod_area).replaceAll(
         "{{director}}", movie.vod_director).replaceAll(
@@ -194,20 +195,28 @@ function showMovie(movie){
         if (vod_urls.length > 0) {
             vod_urls = vod_urls[0].split(/\r\n/);
             var url = vod_urls[0].split("$")[1];
-		if(url.startsWith("http://")){
-		url=url.replace("http://","https://")
-		}
-            if (url.endsWith(".m3u8")) {
-                url = "https://www.ixxplayer.com/video.php?url=" + url;
-            }
-            jQuery(".player iframe").attr("src", url || "about:blank");
+			playMovie(url);
             var html = "";
+			var hisSee="";
+			if(vod_urls.length>1){
+				hisSee=queryProgress(movie.vod_id);
+			}
             for (var _index = 0; _index < vod_urls.length; _index++) {
                 var _urls = vod_urls[_index].split("$");
-                html = html + PlayLi.replaceAll("{{cur}}", _index == 0 ? "current" : "").replaceAll(
+				var cur=_index == 0 ? "current" : "";
+				if(hisSee!=""){
+					if(hisSee!=_urls[0]){
+						cur="";
+					}else{
+						cur= "current";
+						playMovie(_urls[1]);
+					}
+				}
+                html = html + PlayLi.replaceAll("{{cur}}",cur).replaceAll(
                     "{{url}}", _urls[1]).replaceAll(
                     "{{name}}", _urls[0]);
             }
+			
             jQuery(".playlist ul").empty().html(html);
         }
     }
@@ -239,17 +248,23 @@ jQuery("#menu").on("tap", "li", function () {
 
 jQuery(".playlist").on("tap", "li", function () {
     var url = jQuery(this).data("url");
+	playMovie(url);
+    jQuery(".playlist li.current").removeClass("current");
+    jQuery(this).addClass("current");
+	setProgress(curPlayID,jQuery(this).text())
+  });
+
+function playMovie(url){
 	if(url.startsWith("http://")){
 		url=url.replace("http://","https://")
 		}
     if (url.endsWith(".m3u8")) {
         url = "https://www.ixxplayer.com/video.php?url=" + url;
     }
-    jQuery(".playlist li.current").removeClass("current");
-    jQuery(this).addClass("current");
-    jQuery(".player iframe").attr("src", "about:blank");
+	jQuery(".player iframe").attr("src", "about:blank");
     jQuery(".player iframe").attr("src", url || "about:blank");
-});
+}
+
 
 jQuery(".mui-search").on('submit', '.movie-search-form', function (event) {
     event.preventDefault();
@@ -340,5 +355,13 @@ window.queryMovie=function (){
             );
     });
 }
+
+window.queryProgress=function(id){
+	return localStorage.getItem('$movie_'+id)||"";
+}
+window.setProgress=function(id,num){
+	localStorage.setItem('$movie_'+id,num);
+}
+
 }
 });
