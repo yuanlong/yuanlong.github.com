@@ -286,13 +286,7 @@ function resize(){
 jQuery(window).resize(function(){
   resize();
 });
-try{
-	var curMovie=localStorage.getItem('$currMovie') || "";
-	if(curMovie!=""){
-		var mov=JSON.parse(curMovie);
-		showMovie(mov);
-	}
-}catch(e){}
+
 
 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 jQuery.getScript("js/jsstore.min.js",function(){
@@ -364,4 +358,12 @@ window.setProgress=function(id,num){
 }
 
 }
+
+try{
+	var curMovie=localStorage.getItem('$currMovie') || "";
+	if(curMovie!=""){
+		var mov=JSON.parse(curMovie);
+		showMovie(mov);
+	}
+}catch(e){}
 });
