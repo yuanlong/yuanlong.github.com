@@ -349,16 +349,13 @@ window.queryMovie=function (){
             );
     });
 }
-
+}
 window.queryProgress=function(id){
 	return localStorage.getItem('$movie_'+id)||"";
 }
 window.setProgress=function(id,num){
 	localStorage.setItem('$movie_'+id,num);
 }
-
-}
-
 try{
 	var curMovie=localStorage.getItem('$currMovie') || "";
 	if(curMovie!=""){
