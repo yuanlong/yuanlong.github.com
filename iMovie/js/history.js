@@ -1,4 +1,4 @@
-if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+if (/(iPhone|iPad|iPod|iOS|Mac)/i.test(navigator.userAgent)) {
 var jsstoreCon = new JsStore.Connection(new Worker("js/jsstore.worker.min.js"));
 
 async function initDb() {

@@ -144,7 +144,8 @@ input[type=search] {
     background-color: rgba(185, 184, 184, 0.1);
 }
 .mui-card {
-    width: 112px;
+	width: 98%;
+    max-width: 112px;
     height: 150px;
     display: inline-block;
     background-color: #333;
@@ -186,7 +187,8 @@ input[type=search] {
 .moviecontent li {
     display: inline-block;
     vertical-align: top;
-    width: 115px;
+	width: 25%;
+    max-width: 115px;
     text-align: center;
 }
 .loading {

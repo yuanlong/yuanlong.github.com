@@ -105,7 +105,12 @@ window.showMovies =function (data, clean) {
         pullRefresh.endPullUpToRefresh();
     }
 }
-
+window.queryProgress=function(id){
+	return localStorage.getItem('$movie_'+id)||"";
+}
+window.setProgress=function(id,num){
+	localStorage.setItem('$movie_'+id,num);
+}
 function loadMovies(cid, pg, clean) {
     if (clean) {
         showLoading();
@@ -288,7 +293,7 @@ jQuery(window).resize(function(){
 });
 
 
-if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+if (/(iPhone|iPad|iPod|iOS|Mac)/i.test(navigator.userAgent)) {
 jQuery.getScript("js/jsstore.min.js",function(){
 loadscript("js/history.js");
 });
@@ -350,12 +355,7 @@ window.queryMovie=function (){
     });
 }
 }
-window.queryProgress=function(id){
-	return localStorage.getItem('$movie_'+id)||"";
-}
-window.setProgress=function(id,num){
-	localStorage.setItem('$movie_'+id,num);
-}
+
 try{
 	var curMovie=localStorage.getItem('$currMovie') || "";
 	if(curMovie!=""){
