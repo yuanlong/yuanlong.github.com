@@ -81,6 +81,8 @@ var cid = 5;
 var page = 1;
 var curType = "list";
 loadMovies(cid, page, true);
+Array.prototype.contains=function(a){for(var i=0;i<this.length;i++){if(this[i]==a)return true;}return false;}
+var allowCIDS=['26','23','24'];
 window.showMovies =function (data, clean) {
     if (clean) {
         content.empty();
@@ -88,7 +90,7 @@ window.showMovies =function (data, clean) {
     for (var i = 0; i < data.data.length; i++) {
 		
         var movie = data.data[i];
-		if(movie.vod_cid>19&&movie.vod_cid!=26){continue;}//屏蔽
+		if(movie.vod_cid>19&&movie.vod_cid!=26&&!allowCIDS.contains(movie.vod_cid)){continue;}//屏蔽
         MOVIES[movie.vod_id] = movie;
         var html = MovieTMPL.replaceAll("{{id}}", movie.vod_id).replaceAll("{{img}}", movie.vod_pic).replaceAll(
             "{{name}}", movie.vod_name);
