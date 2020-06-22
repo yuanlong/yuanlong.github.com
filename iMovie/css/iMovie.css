@@ -147,6 +147,7 @@ input[type=search] {
 	width: 98%;
     max-width: 112px;
     min-height: 112px;
+	max-height: 150px;
     display: inline-block;
     background-color: #333;
     margin: 10px 0 0 0;
