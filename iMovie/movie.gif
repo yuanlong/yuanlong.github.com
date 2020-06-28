@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#version 2020051601
+#version 2020062801
 CACHE:
 ./
 ./index.html
@@ -11,9 +11,14 @@ CACHE:
 ./js/jsstore.min.js
 ./js/jsstore.worker.min.js
 ./js/history.js
+./js/lock.js
+./js/business.js
+./js/jose.min.js
+./js/clock.js
 https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css
 https://cdn.bootcss.com/mui/3.7.1/js/mui.min.js
 https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js
+https://cdn.bootcdn.net/ajax/libs/js-cookie/2.2.1/js.cookie.min.js
 
 NETWORK:
 *
