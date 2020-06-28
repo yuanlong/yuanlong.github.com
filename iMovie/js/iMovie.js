@@ -11,7 +11,7 @@ jQuery(function(){
 	try{
         launchFullScreen(document.documentElement);
 	}catch(e){}
-function loadscript(url) {
+window.loadscript=function(url) {
     var script = document.createElement("script");
     script.src = url;
     document.body.appendChild(script);
