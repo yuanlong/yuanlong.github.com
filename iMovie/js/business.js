@@ -232,6 +232,8 @@ function refreshMoives(vodid,vodname){
 				var movie = data.data[i];
 				if(movie.vod_id==vodid){
 					showPlayList(movie,false);
+					saveMovie(movie);
+					break;
 				}
 			}
         },
