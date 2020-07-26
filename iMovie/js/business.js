@@ -168,20 +168,30 @@ function loadHistory(){
 	hideLoading();
 }
 var curPlayID="";
+var curPlayName="";
 function showMovie(movie){
 	curPlayID=movie.vod_id;
+	curPlayName=movie.vod_name;
  var html = InterTMPL.replaceAll("{{name}}", movie.vod_name).replaceAll("{{type}}", movie.list_name).replaceAll(
         "{{area}}", movie.vod_area).replaceAll(
         "{{director}}", movie.vod_director).replaceAll(
         "{{actor}}", movie.vod_actor).replaceAll(
         "{{content}}", movie.vod_content);
     movieinter.empty().html(html);
-    if (movie.vod_url != undefined) {
+    showPlayList(movie,true);
+    jQuery("#moviename").text(movie.vod_name);
+    viewApi.go("#play");
+}
+
+function showPlayList(movie,play){
+if (movie.vod_url != undefined) {
         var vod_urls = movie.vod_url.split("$$$");
         if (vod_urls.length > 0) {
             vod_urls = vod_urls[0].split(/\r\n/);
             var url = vod_urls[0].split("$")[1];
+			if(play){
 			playMovie(url);
+			}
             var html = "";
 			var hisSee="";
 			if(vod_urls.length>1){
@@ -195,7 +205,9 @@ function showMovie(movie){
 						cur="";
 					}else{
 						cur= "current";
+						if(play){
 						playMovie(_urls[1]);
+						}
 					}
 				}
                 html = html + PlayLi.replaceAll("{{cur}}",cur).replaceAll(
@@ -206,9 +218,31 @@ function showMovie(movie){
             jQuery(".playlist ul").empty().html(html);
         }
     }
-    jQuery("#moviename").text(movie.vod_name);
-    viewApi.go("#play");
 }
+
+function refreshMoives(vodid,vodname){
+	jQuery.retryAjax({
+		 url:CrossServer+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + 1 +
+        "&g=plus&play=kuyun&wd=" + vodname),
+        timeout: 5000,
+        retryLimit: 3,
+		dataType:"JSON",
+        success:function (data) {
+           for (var i = 0; i < data.data.length; i++) {
+				var movie = data.data[i];
+				if(movie.vod_id==vodid){
+					showPlayList(movie,false);
+				}
+			}
+        },
+		error:function () {
+		
+    }});
+}
+
+jQuery("#refreshBtn").click(function(){
+refreshMoives(curPlayID,curPlayName)
+})
 
 jQuery("#menu").on("tap", "li", function () {
 	var curMenu=jQuery(this);
