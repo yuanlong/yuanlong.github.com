@@ -344,7 +344,7 @@ window.saveMovie=function (mov){
 }
 window.deleteMovie=function (){
 	db.transaction(function (tx) {
-                    tx.executeSql("DELETE FROM movies WHERE  last_date<datetime('now', '-7 day')", [], function (tx, result) {
+                    tx.executeSql("DELETE FROM movies WHERE  last_date<datetime('now', '-60 day')", [], function (tx, result) {
                         
                     }, function (e) {
                     });

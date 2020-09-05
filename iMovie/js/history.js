@@ -49,7 +49,7 @@ window.deleteMovie=async function (){
             from: 'movies',
             where: {
                 last_date: {
-					"<":new Date().getTime()-7*24*60*60*1000
+					"<":new Date().getTime()-60*24*60*60*1000
 				}
             }
         });
