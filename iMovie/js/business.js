@@ -281,7 +281,8 @@ function playMovie(url){
 		url=url.replace("http://","https://")
 		}
     if (url.endsWith(".m3u8")) {
-        url = "https://www.ixxplayer.com/video.php?url=" + url;
+       // url = "https://www.ixxplayer.com/video.php?url=" + url;
+	   url="https://www.dplayer.tv/?url=" + url;
     }
 	jQuery(".player iframe").attr("src", "about:blank");
     jQuery(".player iframe").attr("src", url || "about:blank");
