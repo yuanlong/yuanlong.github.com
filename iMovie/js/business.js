@@ -1,5 +1,7 @@
 (function(){
-var CrossServer="https://jsonp.afeld.me/?url=";
+//var CrossServer="https://jsonp.afeld.me/?url=";
+//var CrossServer="https://json2jsonp.com/?url=";
+var CrossServer="https://cors-anywhere.herokuapp.com/";
 (function(e){e.retryAjax=function(t){var n;t.tryCount=t.tryCount?t.tryCount:0,t.retryLimit=t.retryLimit?t.retryLimit:2,t.suppressErrors=!0,t.error?(n=t.error,delete t.error):n=function(){},t.complete=function(t,r){if(e.inArray(r,["timeout","abort","error","parsererror"])>-1)return this.tryCount++,this.tryCount<=this.retryLimit?(this.tryCount===this.retryLimit&&(this.error=n,delete this.suppressErrors),e.ajax(this),!0):(console.log("There was a server error.  Please refresh the page.  If the issue persists, give us a call. Thanks!"),!0)},e.ajax(t)}})(jQuery);
 
 String.prototype.replaceAll = stringReplaceAll;
@@ -96,9 +98,10 @@ function loadMovies(cid, pg, clean) {
     if (clean) {
         showLoading();
     }
+	//encodeURIComponent(
     jQuery.retryAjax({
-		url:CrossServer+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
-        "&g=plus&play=kuyun&cid=" + cid),
+		url:CrossServer+"https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+        "&g=plus&play=kuyun&cid=" + cid,
 		timeout: 5000,
         retryLimit: 10,
 		dataType:"JSON",
@@ -125,8 +128,8 @@ function searchMovies(wd, pg, clean) {
         showLoading();
     }
      jQuery.retryAjax({
-		 url:CrossServer+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
-        "&g=plus&play=kuyun&wd=" + wd),
+		 url:CrossServer+"https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+        "&g=plus&play=kuyun&wd=" + wd,
         timeout: 5000,
         retryLimit: 10,
 		dataType:"JSON",
@@ -222,8 +225,8 @@ if (movie.vod_url != undefined) {
 
 function refreshMoives(vodid,vodname){
 	jQuery.retryAjax({
-		 url:CrossServer+encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + 1 +
-        "&g=plus&play=kuyun&wd=" + vodname),
+		 url:CrossServer+"https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + 1 +
+        "&g=plus&play=kuyun&wd=" + vodname,
         timeout: 5000,
         retryLimit: 10,
 		dataType:"JSON",
