@@ -62,6 +62,7 @@
 			timeout: 5000,
 			retryLimit: 10,
 			dataType: "JSON",
+			cache:true,
 			success: function(data) {
 				for (var i = 0; i < data.data.length; i++) {
 					var movie = data.data[i];
