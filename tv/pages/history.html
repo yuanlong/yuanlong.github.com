@@ -1,0 +1,65 @@
+<template id="history">
+	<div>
+		<div class="common_container">
+			<div class="videolist_container_inner " v-if="MOVIES">
+				<div class="g-col" v-for="(mov,index) in MOVIES">
+					<div class="g-box" @click="showMovie(mov)">
+						<div class="categorypack_yk_pack_v" type="vertical">
+							<div class="categorypack_pack_cover"><a><img class="lazy" v-lazy="mov.vod_pic.replace('http://','https://')">
+									<div class="categorypack_bg"></div><span class="categorypack_p_rb"><span></span></span>
+								</a></div>
+							<div class="categorypack_info_list">
+								<div class="categorypack_title categorypack_short_title"><a>{{mov.vod_name}}</a></div>
+								<div class="categorypack_subtitle"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="preloading-container" v-if="loading">
+				<div class="preloading-layer">
+					<div class="">
+						<p>加载中...</p>
+						<div class="h5-layer-loading">
+							<div class="spinner1">
+								<div class="bounce1"></div>
+								<div class="bounce2"></div>
+								<div class="bounce3"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</template>
+<script>
+	var History = Vue.extend({
+		template: "#history",
+		methods: {
+			loadMovie() {
+				this.loading=true;
+				var self = this;
+				queryMovie((data) => {
+					self.MOVIES=data.data;
+					this.loading=false;
+				});
+			},
+			showMovie(mv){
+				curPlayMovie=mv;
+				this.$router.push({ path: '/play/'+mv.vod_id+"/"+mv.vod_name });
+			}
+		},
+		created() {
+			document.title="播放历史-iMovie";
+			this.loadMovie();
+		},
+		data() {
+			return {
+				loading:false,
+				MOVIES: null,
+			}
+		}
+	});
+</script>

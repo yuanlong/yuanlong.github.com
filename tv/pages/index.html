@@ -1,0 +1,114 @@
+<template id="index">
+	<div>
+		<div class="module_mod " name="m_pos" v-for="mv in CIDS"  v-if="MOVIES[mv.cid]">
+			<div class="common_container module_mod_bottom">
+				<div class="ant-tabs ant-tabs-top tabs_component_tabs ant-tabs-line ant-tabs-no-animation">
+					<div role="tablist" class="ant-tabs-bar ant-tabs-top-bar" tabindex="0">
+						<div class="ant-tabs-extra-content" style="float: right;">
+							<h2 class="tabs_module_title">
+								<div class="tabs_main_title_wrap"><a>{{mv.name}}</a></div>
+							</h2>
+						</div>
+					</div>
+					<div tabindex="0" role="presentation" style="width: 0px; height: 0px; overflow: hidden; position: absolute;"></div>
+					<div class="ant-tabs-content ant-tabs-content-no-animated ant-tabs-top-content">
+						<div role="tabpanel" aria-hidden="false" class="ant-tabs-tabpane ant-tabs-tabpane-active" data-spm="drawer12"
+						 data-name="c_pos" data-spm-max-idx="16">
+							<div tabindex="0" role="presentation" style="width: 0px; height: 0px; overflow: hidden; position: absolute;"></div>
+							<div class="">
+								<div class="trochanter_trochanterroot ">
+									<div class="icon_videoinfoarrowiconfont">
+										<div class="trochanter_left trochanter_hide icon_icon icon_left" data="true"></div>
+									</div>
+									<div class="trochanter_trochantercomponent ">
+										<div class="trochanter_trochantercontent" style="transform: translateX(0px);">
+											<div class="g-row">
+												<div class="g-col" v-for="(mov,index) in MOVIES[mv.cid]" v-if="index<8">
+													<div class="g-box" @click="showMovie(mov)">
+														<div class="pack_yk_pack_v" type="vertical">
+															<div class="pack_pack_cover"><a class="aplus_exp aplus_clk"><img class="lazy" v-lazy="mov.vod_pic.replace('http://','https://')">
+																	<div class="pack_bg"></div><span class="pack_p_rb"><span class="pack_pack_score"></span></span>
+																</a></div>
+															<div class="pack_info_list">
+																<div class="pack_title pack_short_title" style="max-height: 22px;"><a class="aplus_exp aplus_clk">{{mov.vod_name}}</a></div>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									<div class="icon_videoinfoarrowiconfont">
+										<div class="icon_videoinfoarrowiconfont icon_icon icon_right trochanter_right trochanter_hide" data="true"></div>
+									</div>
+								</div>
+							</div>
+							<div tabindex="0" role="presentation" style="width: 0px; height: 0px; overflow: hidden; position: absolute;"></div>
+						</div>
+						<div role="tabpanel" aria-hidden="true" class="ant-tabs-tabpane ant-tabs-tabpane-inactive" data-spm="drawer12"
+						 data-name="c_pos"></div>
+						<div role="tabpanel" aria-hidden="true" class="ant-tabs-tabpane ant-tabs-tabpane-inactive" data-spm="drawer12"
+						 data-name="c_pos"></div>
+						<div role="tabpanel" aria-hidden="true" class="ant-tabs-tabpane ant-tabs-tabpane-inactive" data-spm="drawer12"
+						 data-name="c_pos"></div>
+					</div>
+					<div tabindex="0" role="presentation" style="width: 0px; height: 0px; overflow: hidden; position: absolute;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="preloading-container" v-if="loading">
+			<div class="preloading-layer">
+				<div class="">
+					<p>加载中...</p>
+					<div class="h5-layer-loading">
+						<div class="spinner1">
+							<div class="bounce1"></div>
+							<div class="bounce2"></div>
+							<div class="bounce3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	var list = ["动作片", "喜剧片", "国产剧", "国内综艺", "科幻片", "恐怖片", "欧美剧", "国产动漫", "日韩动漫"]
+	var Index = Vue.extend({
+		template: "#index",
+		methods: {
+			loadMovie(cid) {
+				var self=this;
+				loadMovies(cid, 1, (data)=>{
+					 Vue.set(this.MOVIES,cid,data.data);
+					 self.loading=false;
+				},true);
+			},showMovie(mv){
+				curPlayMovie=mv;
+				this.$router.push({ path: '/play/'+mv.vod_id+"/"+mv.vod_name });
+			}
+		},
+		created() {
+			for (var j=0; j < list.length; j++) {
+				for (var i = 0; i < CIDS.length; i++) {
+					if (CIDS[i].name == list[j]) {
+						this.CIDS.push(CIDS[i]);
+						this.loadMovie(CIDS[i].cid);
+					}
+				}
+			}
+		},
+		mounted() {
+			document.title="首页-iMovie";
+		},
+		data() {
+			return {
+				loading:true,
+				MOVIES: {},
+				CIDS: []
+			}
+		}
+	});
+</script>
