@@ -39,7 +39,7 @@
 						<div class="anthology-wrap scroll-area" v-if="movie">
 							<div class="right-title-wrap" id="module_basic_dayu_sub" >
 								<div class="normal-title-wrap">
-									<img v-lazy="movie.vod_pic" style="width: 270px;height: 337px;"/>
+									<img v-lazy="movie.vod_pic.replace('http://','https://')" style="width: 270px;height: 337px;"/>
 									<div class="thesis-wrap"><a class="title-link ellipsis-style">{{vname}}</a></div>
 									<div class="title-info">
 										<p>类型：<span>{{movie.list_name}}</span></p>
