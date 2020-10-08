@@ -1,4 +1,10 @@
 jQuery(function(){
+try{
+	if( navigator.platform.indexOf("Win") == 0 &&!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){
+		window.location="/tv/"
+	}
+}catch(){}
+
  function launchFullScreen(element) {
         if(element.requestFullScreen) {
             element.requestFullScreen();
