@@ -61,6 +61,29 @@ a:hover {
 	width: 100%;
 	height: 70px;
 }
+@media (max-width: 1239px) {
+	.g-header .container {
+		max-width: 960px
+	}
+}
+
+@media (min-width: 1240px) and (max-width:1329px) {
+	.g-header .container {
+		max-width: 1140px
+	}
+}
+
+@media (min-width: 1330px) and (max-width:1591px) {
+	.g-header .container {
+		max-width: 1230px
+	}
+}
+
+@media (min-width: 1592px) and (max-width:1789px) {
+	.g-header .container {
+		max-width: 1542px
+	}
+}
 
 @media screen and (min-width: 1790px) {
 	.g-header .container {
