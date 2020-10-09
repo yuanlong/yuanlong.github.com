@@ -60,7 +60,9 @@ var MOVIES = {};
 var cid = 5;
 var page = 1;
 var curType = "list";
+jQuery(function(){
 loadMovies(cid, page, true);
+});
 Array.prototype.contains=function(a){for(var i=0;i<this.length;i++){if(this[i]==a)return true;}return false;}
 var allowCIDS=['26','23','24'];
 window.showMovies =function (data, clean) {
