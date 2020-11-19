@@ -100,7 +100,7 @@ function loadMovies(cid, pg, clean) {
     jQuery.retryAjax({
 		url:CrossServer+"https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&cid=" + cid,
-		timeout: 5000,
+		timeout: 20000,
         retryLimit: 10,
 	    cache:true,
 		dataType:"JSON",
@@ -129,7 +129,7 @@ function searchMovies(wd, pg, clean) {
      jQuery.retryAjax({
 		 url:CrossServer+"https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
         "&g=plus&play=kuyun&wd=" + wd,
-        timeout: 5000,
+        timeout: 20000,
         retryLimit: 10,
 	     cache:true,
 		dataType:"JSON",

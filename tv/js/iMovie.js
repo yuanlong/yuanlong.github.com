@@ -22,7 +22,7 @@
 	}
 	window.loadMovies = function(cid, pg, callback,cache) {
 		jQuery.retryAjax({
-			url: CrossServer + ("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+			url: CrossServer + encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
 				"&g=plus&play=kuyun&cid=" + cid),
 			timeout: 20000,
 			retryLimit: 10,
@@ -37,7 +37,7 @@
 	window.searchMovies = function(wd, pg, callback) {
 		if (wd == "") return;
 		jQuery.retryAjax({
-			url: CrossServer + ("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+			url: CrossServer + encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
 				"&g=plus&play=kuyun&wd=" + wd),
 			timeout: 20000,
 			retryLimit: 10,
@@ -57,7 +57,7 @@
 
 	window.refreshMoives=function(vodid, vodname, callback) {
 		jQuery.retryAjax({
-			url: CrossServer + ("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + 1 +
+			url: CrossServer + encodeURIComponent("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + 1 +
 				"&g=plus&play=kuyun&wd=" + vodname),
 			timeout: 20000,
 			retryLimit: 10,
