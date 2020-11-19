@@ -2,7 +2,6 @@
 //var CrossServer="https://jsonp.afeld.me/?url=";
 //var CrossServer="https://json2jsonp.com/?url=";
 var CrossServer="https://cors-anywhere.herokuapp.com/";
-(function(e){e.retryAjax=function(t){var n;t.tryCount=t.tryCount?t.tryCount:0,t.retryLimit=t.retryLimit?t.retryLimit:2,t.suppressErrors=!0,t.error?(n=t.error,delete t.error):n=function(){},t.complete=function(t,r){if(e.inArray(r,["timeout","abort","error","parsererror"])>-1)return this.tryCount++,this.tryCount<=this.retryLimit?(this.tryCount===this.retryLimit&&(this.error=n,delete this.suppressErrors),e.ajax(this),!0):(console.log("There was a server error.  Please refresh the page.  If the issue persists, give us a call. Thanks!"),!0)},e.ajax(t)}})(jQuery);
 
 String.prototype.replaceAll = stringReplaceAll;
 
@@ -61,7 +60,6 @@ var MOVIES = {};
 var cid = 5;
 var page = 1;
 var curType = "list";
-loadMovies(cid, page, true);
 Array.prototype.contains=function(a){for(var i=0;i<this.length;i++){if(this[i]==a)return true;}return false;}
 var allowCIDS=['26','23','24'];
 window.showMovies =function (data, clean) {
@@ -104,6 +102,7 @@ function loadMovies(cid, pg, clean) {
         "&g=plus&play=kuyun&cid=" + cid,
 		timeout: 5000,
         retryLimit: 10,
+	    cache:true,
 		dataType:"JSON",
         success:function (data) {
             showMovies(data, clean);
@@ -132,6 +131,7 @@ function searchMovies(wd, pg, clean) {
         "&g=plus&play=kuyun&wd=" + wd,
         timeout: 5000,
         retryLimit: 10,
+	     cache:true,
 		dataType:"JSON",
         success:function (data) {
             showMovies(data, clean);
@@ -149,6 +149,9 @@ function showLoading() {
 function hideLoading() {
     jQuery(".loading,.mui-mask").hide();
 }
+jQuery(function(){
+loadMovies(cid, page, true);
+});	
 var movieinter = jQuery("#movieIntr");
 var PlayLi = '<li class="{{cur}}" data-url="{{url}}"><a>{{name}}</a></li>';
 jQuery(".moviecontent").on("tap", ".mui-card", function () {
