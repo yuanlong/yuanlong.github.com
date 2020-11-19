@@ -1,7 +1,7 @@
 (function() {
-	//var CrossServer="https://jsonp.afeld.me/?url=";
+	var CrossServer="https://jsonp.afeld.me/?url=";
 	//var CrossServer="https://json2jsonp.com/?url=";
-	var CrossServer = "https://cors-anywhere.herokuapp.com/";
+	//var CrossServer = "https://cors-anywhere.herokuapp.com/";
 	String.prototype.replaceAll = stringReplaceAll;
 
 	function stringReplaceAll(AFindText, ARepText) {
@@ -24,7 +24,7 @@
 		jQuery.retryAjax({
 			url: CrossServer + ("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
 				"&g=plus&play=kuyun&cid=" + cid),
-			timeout: 5000,
+			timeout: 20000,
 			retryLimit: 10,
 			dataType: "JSON",
 			cache:cache||false,
@@ -39,7 +39,7 @@
 		jQuery.retryAjax({
 			url: CrossServer + ("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
 				"&g=plus&play=kuyun&wd=" + wd),
-			timeout: 5000,
+			timeout: 20000,
 			retryLimit: 10,
 			dataType: "JSON",
 			success: function(data) {
@@ -59,7 +59,7 @@
 		jQuery.retryAjax({
 			url: CrossServer + ("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + 1 +
 				"&g=plus&play=kuyun&wd=" + vodname),
-			timeout: 5000,
+			timeout: 20000,
 			retryLimit: 10,
 			dataType: "JSON",
 			cache:true,
