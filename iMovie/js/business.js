@@ -193,7 +193,11 @@ function showPlayList(movie,play){
 if (movie.vod_url != undefined) {
         var vod_urls = movie.vod_url.split("$$$");
         if (vod_urls.length > 0) {
-            vod_urls = vod_urls[0].split(/\r\n/);
+			if(vod_urls.length > 1){
+			vod_urls = vod_urls[1].split(/\r\n/);	
+				}else{
+			vod_urls = vod_urls[0].split(/\r\n/);
+				}
             var url = vod_urls[0].split("$")[1];
 			if(play){
 			playMovie(url);
@@ -288,7 +292,7 @@ function playMovie(url){
 		}
     if (url.endsWith(".m3u8")) {
        // url = "https://www.ixxplayer.com/video.php?url=" + url;
-	   url="https://www.dplayer.tv/?url=" + url;
+	   url="https://www.dplayer.tv/dp/?url=" + url;
     }
 	jQuery(".player iframe").attr("src", "about:blank");
     jQuery(".player iframe").attr("src", url || "about:blank");

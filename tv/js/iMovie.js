@@ -84,7 +84,7 @@
 		}
 		if (url.endsWith(".m3u8")) {
 			// url = "https://www.ixxplayer.com/video.php?url=" + url;
-			url = "https://www.dplayer.tv/?url=" + url;
+			url = "https://www.dplayer.tv/dp/?url=" + url;
 		}
 		return url;
 	}
