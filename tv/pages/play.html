@@ -125,11 +125,11 @@
 				if (movie.vod_url != undefined) {
 					var vod_urls = movie.vod_url.split("$$$");
 					if (vod_urls.length > 0) {
-						if(vod_urls.length > 1){
-						vod_urls = vod_urls[1].split(/\r\n/);	
-							}else{
+						//if(vod_urls.length > 1){
+						//vod_urls = vod_urls[1].split(/\r\n/);	
+						//	}else{
 						vod_urls = vod_urls[0].split(/\r\n/);
-							}
+						//	}
 						var firstUrl = vod_urls[0].split("$");
 						this.hisSee = firstUrl[0];
 						if (vod_urls.length > 1) {
