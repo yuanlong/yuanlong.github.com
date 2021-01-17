@@ -16,6 +16,16 @@
 		<link rel="stylesheet" href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css">
 		<link rel="stylesheet" href="./css/iMovie.css">
 		<script src="./js/jose.min.js"></script>
+		<style>
+		#server .line{
+			margin: 0 5px;
+			padding: 1px 5px;
+		}
+		#server .line.cur{
+			background: #f4a502;
+			color: #fff;
+		}
+		</style>
 	</head>
 <body class="mui-fullscreen">
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap ">
@@ -30,7 +40,11 @@
 							<br>
 							<br>
 						</div>
-						<div class="title" style="margin-bottom: 25px;">分类导航</div>
+						<div class="title" style="margin-bottom: 25px;">分类导航
+						<div id="server" style="font-size: 12px;float: right;">
+						<span class="line cur" data-server="0">线路一</span>
+						<span class="line" data-server="1">线路二</span></div>
+						</div>
 						<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" id="menu">
 						<li class="mui-table-view-cell" data-type="history">
 								<a class="mui-navigate-right">

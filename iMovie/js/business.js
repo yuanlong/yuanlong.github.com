@@ -2,7 +2,32 @@
 //var CrossServer="https://jsonp.afeld.me/?url=";
 //var CrossServer="https://json2jsonp.com/?url=";
 var CrossServer="https://cors-anywhere.herokuapp.com/";
+var Servers=[
+	{url:"https://jsonp.afeld.me/?url=",encode:true},
+	{url:"https://cors-anywhere.herokuapp.com/",encode:false}
+];
+var curServer= 0;
+function createRequestUrl(url){
+	var server=Servers[curServer];
+	if(server.encode){
+		return server.url+encodeURIComponent(url);
+	}else{
+		return server.url+url;
+	}
+}
+function initServer(){
+	curServer=localStorage.getItem('$server_line')||"0"
+	jQuery("#server .line.cur").removeClass("cur");
+    jQuery("#server .line[data-server="+curServer+"]").addClass("cur");
+}
+initServer();
 
+jQuery("#server").on("tap", ".line", function () {
+	curServer=jQuery(this).data("server");
+	localStorage.setItem('$server_line',curServer);
+	jQuery("#server .line.cur").removeClass("cur");
+    jQuery(this).addClass("cur");
+});
 String.prototype.replaceAll = stringReplaceAll;
 
 function stringReplaceAll(AFindText, ARepText) {
@@ -98,8 +123,8 @@ function loadMovies(cid, pg, clean) {
     }
 	//encodeURIComponent(
     jQuery.retryAjax({
-		url:CrossServer+"https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
-        "&g=plus&play=kuyun&cid=" + cid,
+		url:createRequestUrl("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+        "&g=plus&play=kuyun&cid=" + cid),
 		timeout: 20000,
         retryLimit: 10,
 	    cache:true,
@@ -127,8 +152,8 @@ function searchMovies(wd, pg, clean) {
         showLoading();
     }
      jQuery.retryAjax({
-		 url:CrossServer+"https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
-        "&g=plus&play=kuyun&wd=" + wd,
+		 url:createRequestUrl("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + pg +
+        "&g=plus&play=kuyun&wd=" + wd),
         timeout: 20000,
         retryLimit: 10,
 	     cache:true,
@@ -193,11 +218,11 @@ function showPlayList(movie,play){
 if (movie.vod_url != undefined) {
         var vod_urls = movie.vod_url.split("$$$");
         if (vod_urls.length > 0) {
-			if(vod_urls.length > 1){
-			vod_urls = vod_urls[1].split(/\r\n/);	
-				}else{
+			//if(vod_urls.length > 1){
+			//vod_urls = vod_urls[1].split(/\r\n/);	
+			//	}else{
 			vod_urls = vod_urls[0].split(/\r\n/);
-				}
+			//	}
             var url = vod_urls[0].split("$")[1];
 			if(play){
 			playMovie(url);
@@ -232,8 +257,8 @@ if (movie.vod_url != undefined) {
 
 function refreshMoives(vodid,vodname){
 	jQuery.retryAjax({
-		 url:CrossServer+"https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + 1 +
-        "&g=plus&play=kuyun&wd=" + vodname,
+		 url:createRequestUrl("https://api.iokzy.com/inc/feifei3s/?m=api&a=json&p=" + 1 +
+        "&g=plus&play=kuyun&wd=" + vodname),
         timeout: 5000,
         retryLimit: 10,
 		dataType:"JSON",
