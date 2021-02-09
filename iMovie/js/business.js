@@ -317,10 +317,19 @@ function playMovie(url){
 		}
     if (url.endsWith(".m3u8")) {
        // url = "https://www.ixxplayer.com/video.php?url=" + url;
-	   url="https://www.dplayer.tv/dp/?url=" + url;
-    }
+	  // url="https://www.dplayer.tv/dp/?url=" + url;
+	  var videoObject = {
+				container: '.player', //容器的ID或className
+				variable: 'player',//播放函数名称
+				autoplay: true, 
+				video: url
+		};
+		var player = new ckplayer();
+		player.embed(videoObject);
+    }else{
 	jQuery(".player iframe").attr("src", "about:blank");
     jQuery(".player iframe").attr("src", url || "about:blank");
+	}
 }
 
 
