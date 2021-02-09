@@ -315,28 +315,30 @@ jQuery(".playlist").on("tap", "li", function () {
 	setProgress(curPlayID,jQuery(this).text())
   });
 var player=null;
+var PlayTMPL = jQuery("#playTemplate").html();
 function playMovie(url){
 	if(url.startsWith("http://")){
 		url=url.replace("http://","https://")
 		}
+	if(player!=null){
+		player.removeChild();
+		player = null;
+	}
     if (url.endsWith(".m3u8")) {
        // url = "https://www.ixxplayer.com/video.php?url=" + url;
 	  // url="https://www.dplayer.tv/dp/?url=" + url;
 	  var videoObject = {
-				container: '.player', //容器的ID或className
+				container: '#h5player', //容器的ID或className
 				variable: 'player',//播放函数名称
 				autoplay: true, 
 				video: url
 		};
-		if(player!=null){
-			player.removeChild();
-			player = null;
-		}
 		player = new ckplayer();
 		player.embed(videoObject);
     }else{
-	jQuery(".player iframe").attr("src", "about:blank");
-    jQuery(".player iframe").attr("src", url || "about:blank");
+		jQuery(".player").html(PlayTMPL);
+		jQuery(".player iframe").attr("src", "about:blank");
+		jQuery(".player iframe").attr("src", url || "about:blank");
 	}
 }
 
