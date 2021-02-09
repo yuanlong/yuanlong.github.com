@@ -222,10 +222,21 @@ function showPlayList(movie,play){
 if (movie.vod_url != undefined) {
         var vod_urls = movie.vod_url.split("$$$");
         if (vod_urls.length > 0) {
+			 var playtypes=movie.vod_play.split("$$$");
+			 var playIndex=0;
+			 if(playtypes.length==vod_urls.length){
+				for(var ii=0;ii<playtypes.length;ii++){
+					if(playtypes[ii]=='ckm3u8'){
+						playIndex = ii;
+						break;
+					}
+				}
+			 }
+			 vod_urls = vod_urls[playIndex].split(/\r\n/);
 			//if(vod_urls.length > 1){
 			//vod_urls = vod_urls[1].split(/\r\n/);	
 			//	}else{
-			vod_urls = vod_urls[0].split(/\r\n/);
+			
 			//	}
             var url = vod_urls[0].split("$")[1];
 			if(play){
