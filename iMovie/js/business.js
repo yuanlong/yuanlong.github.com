@@ -328,7 +328,7 @@ function playMovie(url){
        // url = "https://www.ixxplayer.com/video.php?url=" + url;
 	  // url="https://www.dplayer.tv/dp/?url=" + url;
 	  var videoObject = {
-				container: '#h5player', //容器的ID或className
+				container: '#player', //容器的ID或className
 				variable: 'player',//播放函数名称
 				autoplay: true, 
 				video: url
