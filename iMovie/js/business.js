@@ -46,6 +46,10 @@ mui.back = function () {
         viewApi.back();
         jQuery(".player iframe").attr("src", "about:blank");
 		localStorage.removeItem('$currMovie');
+		if(player!=null){
+			player.removeChild();
+			player=null;
+		}
     } else { //执行webview后退
         oldBack();
     }
@@ -310,7 +314,7 @@ jQuery(".playlist").on("tap", "li", function () {
     jQuery(this).addClass("current");
 	setProgress(curPlayID,jQuery(this).text())
   });
-
+var player=null;
 function playMovie(url){
 	if(url.startsWith("http://")){
 		url=url.replace("http://","https://")
@@ -324,7 +328,11 @@ function playMovie(url){
 				autoplay: true, 
 				video: url
 		};
-		var player = new ckplayer();
+		if(player!=null){
+			player.removeChild();
+			player = null;
+		}
+		player = new ckplayer();
 		player.embed(videoObject);
     }else{
 	jQuery(".player iframe").attr("src", "about:blank");
