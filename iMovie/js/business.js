@@ -332,6 +332,7 @@ function playMovie(url){
 		url=url.replace("http://","https://")
 		}
 	if(player!=null){
+		player.videoClear();
 		player.removeChild();
 		player = null;
 	}
@@ -344,8 +345,7 @@ function playMovie(url){
 				autoplay: true, 
 				video: url
 		};
-		player = new ckplayer();
-		player.embed(videoObject);
+		player = new ckplayer(videoObject);
     }else{
 		jQuery(".player").html(PlayTMPL);
 		resize();
