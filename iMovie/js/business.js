@@ -337,6 +337,7 @@ function playMovie(url){
 		player.embed(videoObject);
     }else{
 		jQuery(".player").html(PlayTMPL);
+		resize();
 		jQuery(".player iframe").attr("src", "about:blank");
 		jQuery(".player iframe").attr("src", url || "about:blank");
 	}
