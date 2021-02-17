@@ -46,10 +46,7 @@ mui.back = function () {
         viewApi.back();
         jQuery(".player iframe").attr("src", "about:blank");
 		localStorage.removeItem('$currMovie');
-		if(player!=null){
-			player.removeChild();
-			player=null;
-		}
+		clearPlayer();
     } else { //执行webview后退
         oldBack();
     }
@@ -327,25 +324,30 @@ jQuery(".playlist").on("tap", "li", function () {
   });
 var player=null;
 var PlayTMPL = jQuery("#playTemplate").html();
+
+function clearPlayer() {
+   	if(player!=null){
+		player.pause();
+		document.getElementById('player' ).innerHTML = '';
+		player = null;
+	}
+}
+
 function playMovie(url){
 	if(url.startsWith("http://")){
 		url=url.replace("http://","https://")
 		}
-	if(player!=null){
-		player.videoClear();
-		player.removeChild();
-		player = null;
-	}
+	clearPlayer();
     if (url.endsWith(".m3u8")) {
        // url = "https://www.ixxplayer.com/video.php?url=" + url;
 	  // url="https://www.dplayer.tv/dp/?url=" + url;
-	  var videoObject = {
-				container: '#player', //容器的ID或className
-				variable: 'player',//播放函数名称
-				autoplay: true, 
-				video: url
-		};
-		player = new ckplayer(videoObject);
+		player=new DPlayer({
+        container: document.getElementById('player'),
+		autoplay: true,
+        video: {
+            url:url
+        }
+    });
     }else{
 		jQuery(".player").html(PlayTMPL);
 		resize();
