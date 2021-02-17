@@ -330,6 +330,8 @@ function clearPlayer() {
 		player.pause();
 		document.getElementById('player' ).innerHTML = '';
 		player = null;
+	}else{
+	document.getElementById('player' ).innerHTML = '';
 	}
 }
 
@@ -341,13 +343,13 @@ function playMovie(url){
     if (url.endsWith(".m3u8")) {
        // url = "https://www.ixxplayer.com/video.php?url=" + url;
 	  // url="https://www.dplayer.tv/dp/?url=" + url;
-		player=new DPlayer({
+      player=new DPlayer({
         container: document.getElementById('player'),
 		autoplay: true,
         video: {
             url:url
         }
-    });
+      });
     }else{
 		jQuery(".player").html(PlayTMPL);
 		resize();
