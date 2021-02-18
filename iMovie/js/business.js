@@ -253,6 +253,7 @@ if (movie.vod_url != undefined) {
 					}else{
 						cur= "current";
 						if(play){
+							play=false;
 						playMovie(_urls[1]);
 						}
 					}
@@ -349,7 +350,6 @@ function playMovie(url){
 	}else{
       player=new DPlayer({
         container: document.getElementById('player'),
-		autoplay: true,
         video: {
             url:url
         }
