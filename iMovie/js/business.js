@@ -324,7 +324,7 @@ jQuery(".playlist").on("tap", "li", function () {
   });
 var player=null;
 var PlayTMPL = jQuery("#playTemplate").html();
-
+var isIOS=/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent);
 function clearPlayer() {
    	if(player!=null){
 		player.pause();
@@ -343,6 +343,10 @@ function playMovie(url){
     if (url.endsWith(".m3u8")) {
        // url = "https://www.ixxplayer.com/video.php?url=" + url;
 	  // url="https://www.dplayer.tv/dp/?url=" + url;
+	  if(isIOS){
+		jQuery(".player").html( '<video src="'+url +'" controls="controls"  autoplay="autoplay" width="100%" height="100%"></video>')
+	 resize();
+	}else{
       player=new DPlayer({
         container: document.getElementById('player'),
 		autoplay: true,
@@ -350,6 +354,7 @@ function playMovie(url){
             url:url
         }
       });
+	  }
     }else{
 		jQuery(".player").html(PlayTMPL);
 		resize();
